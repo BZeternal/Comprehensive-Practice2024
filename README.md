@@ -11,4 +11,9 @@
 	Element-Plus
 ### 服务器：
 	Aliyun云服务器 2核 1Mbps 2GB
+	操作系统 CentOS 7.9 64位
+###服务器端口
+	后端：3000
+	Mysql：3306
+	Web：80
  
