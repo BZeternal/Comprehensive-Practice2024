@@ -1,15 +1,15 @@
 <template>
     <div class="content">
         <div ref="box" class="box">
-            <div class="left"></div>
+            <div ref="left" class="left"></div>
             <div class="right">
-                <h4 style="display: inline-block;" v-if="flag" class="tips">登 录</h4>
+                <h4 ref="h4" v-if="flag" class="tips">登 录</h4>
                 <h4 v-else class="tips">注册</h4>
-                <img src="../../public/cqjtu.ico" style="width: 30px; height: 30px;">
-                <div v-if="flag">
+                <img ref="img" src="../../public/cqjtu.ico" style="width: 30px; height: 30px; transition: 1s;">
+                <div ref="input" v-if="flag">
                     <input class="acc" type="text" placeholder="用户名">
                     <input  class="acc" type="password" placeholder="密码">
-                    <button  class="submit">Login</button>
+                    <button @click="login"  class="submit">Login</button>
                     <h5 @click="go_register">注册</h5>
                 </div>
                 <div v-else>
@@ -45,7 +45,7 @@ let flag = ref(true)
 let box = ref()
 const go_register = () => {
     box.value.style.margin = '7% auto'
-    box.value.style.height = '32.3rem'
+    box.value.style.height = '31.2rem'
     flag.value = false;
 }
 
@@ -53,6 +53,21 @@ const go_login = () => {
     box.value.style.margin = '10% auto'
     box.value.style.height = '26rem'
     flag.value = true;
+}
+
+let left = ref()
+let h4 = ref()
+let input = ref()
+let img = ref()
+const login = () => {
+    input.value.style.display='none'
+    left.value.style.width = '40%'
+    left.value.style.height = '100%'
+    h4.value.innerText = 'Welcome!';
+    h4.value.classList.add('loginDp')
+    h4.value.style.fontSize = '2.5rem'
+    img.value.style.height = '60px'
+    img.value.style.width = '60px'
 }
 
 </script>
@@ -64,6 +79,10 @@ const go_login = () => {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.loginDp{
+    transform: translateY(8rem);
 }
 
 .content {
@@ -112,6 +131,7 @@ const go_login = () => {
     width: 35%;
     height: 100%;
     background-color: skyblue;
+    transition: 1s;
 }
 
 .box .left::before {
@@ -137,6 +157,7 @@ const go_login = () => {
     font-size: 2.2rem;
     margin-top: 3rem;
     cursor: pointer;
+    transition: 1.5s;
 }
 
 .box .right div {
