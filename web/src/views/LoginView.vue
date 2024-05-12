@@ -3,8 +3,9 @@
         <div ref="box" class="box">
             <div class="left"></div>
             <div class="right">
-                <h4 v-if="flag" class="tips">登 录</h4>
+                <h4 style="display: inline-block;" v-if="flag" class="tips">登 录</h4>
                 <h4 v-else class="tips">注册</h4>
+                <img src="../../public/cqjtu.ico" style="width: 30px; height: 30px;">
                 <div v-if="flag">
                     <input class="acc" type="text" placeholder="用户名">
                     <input  class="acc" type="password" placeholder="密码">
@@ -149,7 +150,7 @@ const go_login = () => {
     width: 80%;
     height: 5rem;
     font-size: 1.1rem;
-    margin-top: 1.1rem;
+    margin-top: 0.2rem;
     padding: 1rem 0 0 1.6rem;
     border: none;
     border-bottom: 1px solid rgb(144, 129, 241);
