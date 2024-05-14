@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.ApplyMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.backend.pojo.Apply">
+            <id property="aId" column="a_id" jdbcType="INTEGER"/>
+            <result property="uId" column="u_id" jdbcType="INTEGER"/>
+            <result property="aName" column="a_name" jdbcType="VARCHAR"/>
+            <result property="aSex" column="a_sex" jdbcType="VARCHAR"/>
+            <result property="aAge" column="a_age" jdbcType="INTEGER"/>
+            <result property="aTel" column="a_tel" jdbcType="VARCHAR"/>
+            <result property="aIdCard" column="a_id_card" jdbcType="VARCHAR"/>
+            <result property="aNation" column="a_nation" jdbcType="VARCHAR"/>
+            <result property="aCarType" column="a_car_type" jdbcType="VARCHAR"/>
+            <result property="aAdd" column="a_add" jdbcType="VARCHAR"/>
+            <result property="aTime" column="a_time" jdbcType="DATE"/>
+            <result property="aText" column="a_text" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        a_id,u_id,a_name,
+        a_sex,a_age,a_tel,
+        a_id_card,a_nation,a_car_type,
+        a_add,a_time,a_text
+    </sql>
+</mapper>

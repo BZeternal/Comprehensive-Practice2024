@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.NoticeMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.backend.pojo.Notice">
+            <id property="nId" column="n_id" jdbcType="INTEGER"/>
+            <result property="uId" column="u_id" jdbcType="INTEGER"/>
+            <result property="nTitle" column="n_title" jdbcType="VARCHAR"/>
+            <result property="nText" column="n_text" jdbcType="VARCHAR"/>
+            <result property="nTime" column="n_time" jdbcType="DATE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        n_id,u_id,n_title,
+        n_text,n_time
+    </sql>
+</mapper>
