@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.CoachMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.backend.pojo.Coach">
+            <id property="cId" column="c_id" jdbcType="INTEGER"/>
+            <result property="cName" column="c_name" jdbcType="VARCHAR"/>
+            <result property="cSex" column="c_sex" jdbcType="VARCHAR"/>
+            <result property="cAge" column="c_age" jdbcType="INTEGER"/>
+            <result property="cTeachAge" column="c_teach_age" jdbcType="INTEGER"/>
+            <result property="cNum" column="c_num" jdbcType="INTEGER"/>
+            <result property="cCarType" column="c_car_type" jdbcType="VARCHAR"/>
+            <result property="cPic" column="c_pic" jdbcType="VARCHAR"/>
+            <result property="cPass" column="c_pass" jdbcType="FLOAT"/>
+            <result property="cTeType" column="c_te_type" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        c_id,c_name,c_sex,
+        c_age,c_teach_age,c_num,
+        c_car_type,c_pic,c_pass,
+        c_te_type
+    </sql>
+</mapper>
