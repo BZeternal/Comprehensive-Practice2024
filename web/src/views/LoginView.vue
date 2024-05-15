@@ -7,16 +7,16 @@
                 <h4 v-else class="tips">注册</h4>
                 <img ref="img" src="../../public/cqjtu.ico" style="width: 30px; height: 30px; transition: 1s;">
                 <div ref="input" v-if="flag">
-                    <input class="acc" type="text" placeholder="用户名">
-                    <input  class="acc" type="password" placeholder="密码">
+                    <input v-model="user.uId" class="acc" type="text" placeholder="账号">
+                    <input v-model="user.password" class="acc" type="password" placeholder="密码">
                     <button @click="login"  class="submit">Login</button>
                     <h5 @click="go_register">注册</h5>
                 </div>
                 <div v-else>
-                    <input class="acc" type="text" placeholder="用户名">
-                    <input class="acc" type="password" placeholder="密码">
-                    <input class="acc" type="password" placeholder="确认密码">
-                    <button class="submit">确定</button>
+                    <input v-model="user.test" class="acc" type="text" placeholder="用户名">
+                    <input v-model="user.password" class="acc" type="password" placeholder="密码">
+                    <input v-model="user.rePassword" class="acc" type="password" placeholder="确认密码">
+                    <button @click="register" class="submit">确定</button>
                     <h5 @click="go_login">已有账号，前往登录</h5>
                 </div>
             </div>
@@ -39,19 +39,36 @@
 
 <script setup>
 import { reactive, ref } from 'vue';
+import * as userApi from '../api/user'
+import { ElMessage,ElMessageBox} from 'element-plus'
+import router from '@/router';
 
 let flag = ref(true)
+let user = reactive({
+    uId:'',
+    password:'',
+    rePassword:'',
+    test:''
+})
+
+const clearUser = () =>{
+    Object.keys(user).forEach(key=>{
+        user[key] = ''
+    })
+}
 
 let box = ref()
 const go_register = () => {
     box.value.style.margin = '7% auto'
     box.value.style.height = '31.2rem'
+    clearUser()
     flag.value = false;
 }
 
 const go_login = () => {
     box.value.style.margin = '10% auto'
     box.value.style.height = '26rem'
+    clearUser()
     flag.value = true;
 }
 
@@ -60,14 +77,64 @@ let h4 = ref()
 let input = ref()
 let img = ref()
 const login = () => {
-    input.value.style.display='none'
-    left.value.style.width = '40%'
-    left.value.style.height = '100%'
-    h4.value.innerText = 'Welcome!';
-    h4.value.classList.add('loginDp')
-    h4.value.style.fontSize = '2.5rem'
-    img.value.style.height = '60px'
-    img.value.style.width = '60px'
+    userApi.login(user)
+    .then(resp=>{
+        if(resp.error_info == 'success')
+        {
+            input.value.style.display='none'
+            left.value.style.width = '40%'
+            left.value.style.height = '100%'
+            h4.value.innerText = 'Welcome!';
+            h4.value.classList.add('loginDp')
+            h4.value.style.fontSize = '2.5rem'
+            img.value.style.height = '60px'
+            img.value.style.width = '60px'
+            localStorage.setItem("uId",resp.uId);
+            if(resp.auth == 1 || resp.auth == 0){
+                router.push({name:"home"})
+            }
+            else{
+                router.push({name:"admineHome"})
+            }
+        }
+        else{
+            ElMessage({
+                message: resp.error_info,
+                type: 'error',
+            })
+        }
+    })
+    
+}
+
+const register = () => {
+    userApi.register(user)
+    .then(resp=>{
+        if(resp.error_info == "success")
+        {
+            ElMessageBox.confirm(
+                '您的账号为' + resp.uId,
+                '用户创建成功！',
+                {
+                    confirmButtonText: '前往登录',
+                    cancelButtonText: '关闭',
+                    type: 'success',
+                }
+            )
+            .then(() => {
+                go_login()
+            })
+            .catch(() => {
+                clearUser()
+            })
+        }
+        else{
+            ElMessage({
+                message: resp.error_info,
+                type: 'error',
+            })
+        }
+    })
 }
 
 </script>
