@@ -10,10 +10,10 @@ const allMenus = [
     auth: 2, //权限
   },
   {
-    path: '/admin/home',
-    name: 'adminHome',
+    path: '/admine/home',
+    name: 'admineHome',
     label: '首页',
-    url: '../views/adminHome/index.vue',
+    url: '../views/admineHome/index.vue',
     icon: 'house',
     auth: 2,
   },

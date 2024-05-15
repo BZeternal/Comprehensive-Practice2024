@@ -99,7 +99,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             return map;
         }
 
-        String image = "";
+        String image = "http://47.115.203.179:8086/user.png";
         User user =new User(null,password,2,image,"非学员");
         userMapper.insert(user);
 
@@ -113,6 +113,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         String uId = data.get("uId");
         User user = userMapper.selectById(Integer.parseInt(uId));
         Map<String,String> map = new HashMap<>();
+        map.put("error_info","success");
         map.put("uId",user.getUId().toString());
         map.put("auth",user.getAuth().toString());
         map.put("image", user.getImage());

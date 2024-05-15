@@ -89,12 +89,12 @@ const login = () => {
             h4.value.style.fontSize = '2.5rem'
             img.value.style.height = '60px'
             img.value.style.width = '60px'
-            localStorage.setItem("uId",resp.uId);
+            sessionStorage.setItem("uId",resp.uId);
             if(resp.auth == 1 || resp.auth == 0){
-                router.push({name:"home"})
+                router.push({name:"admineHome"})
             }
             else{
-                router.push({name:"admineHome"})
+                router.push({name:"home"})
             }
         }
         else{
