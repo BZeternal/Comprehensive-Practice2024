@@ -72,6 +72,17 @@ const go_login = () => {
     flag.value = true;
 }
 
+if(sessionStorage.getItem("uId"))
+{
+    if(sessionStorage.getItem("auth") === '2')
+    {
+        router.push({name:'home'})
+    }
+    else{
+        router.push({name:"admineHome"})
+    }
+}
+
 let left = ref()
 let h4 = ref()
 let input = ref()
@@ -90,12 +101,16 @@ const login = () => {
             img.value.style.height = '60px'
             img.value.style.width = '60px'
             sessionStorage.setItem("uId",resp.uId);
-            if(resp.auth == 1 || resp.auth == 0){
+            sessionStorage.setItem("auth",resp.auth);
+            setTimeout(()=>{
+              if(resp.auth == 1 || resp.auth == 0){
                 router.push({name:"admineHome"})
             }
             else{
                 router.push({name:"home"})
-            }
+            }  
+            },600)
+            
         }
         else{
             ElMessage({
