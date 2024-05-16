@@ -18,6 +18,7 @@ const useUserStore = defineStore('user', {
             this.state = '';
             this.image = '';
             sessionStorage.removeItem('uId');
+            sessionStorage.removeItem('auth');
             router.push('/login');
         },
 

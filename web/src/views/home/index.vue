@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import useUserStore from '@/stores/user.js';
+import useUserStore from '@/stores/modules/user.js';
 const userSore = useUserStore()
 console.log(userSore.auth)
 
