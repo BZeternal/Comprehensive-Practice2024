@@ -25,6 +25,14 @@ const allMenus = [
     icon: 'service',
     auth: 2,
   },
+  {
+    path: '/user/practice',
+    name: 'practice',
+    label: '考题练习',
+    url: '../views/practice/index.vue',
+    icon: 'checked',
+    auth: 2,
+  },
 ];
 
 const getMenus = auth => {

@@ -4,6 +4,7 @@ import getMenus from './menu.js';
 import useUserStore from '@/stores/modules/user.js';
 import pinia from '@/stores';
 import { ElNotification } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 
 let userStore = useUserStore(pinia)
 
@@ -51,6 +52,8 @@ router.beforeEach((to, _from, next) => {
         time = '晚上';
         text = '长夜漫漫，祝你今晚好梦相随！';
       }
+
+
       if (_from.path == '/login' && to.path == '/user/home') {
         ElNotification({
           title: myDate.toLocaleDateString(),
@@ -58,7 +61,23 @@ router.beforeEach((to, _from, next) => {
           type: 'info',
         })
       }
-      next()
+      if (_from.path == '/user/practice') {
+        ElMessageBox.confirm(
+          '离开本页面后数据将不会保存，是否要离开本页面',
+          '提示',
+          {
+            confirmButtonText: '是',
+            cancelButtonText: '否',
+            type: 'info',
+          }
+        )
+          .then(() => {
+            next()
+          })
+          .catch(() => {
+            return
+          })
+      } else { next() }
     });
   } else {
     if ((_from.path == '/login' && to.path == '/login') || (_from.path == '/' && to.path == '/login')) {
