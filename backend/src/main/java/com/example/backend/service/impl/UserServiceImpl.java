@@ -99,7 +99,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             return map;
         }
 
-        String image = "http://47.115.203.179:8086/user.png";
+        int num = (int) (Math.random()*7 + 1);
+        String image = "http://47.115.203.179:8086/img"+ num + ".jpg";
         User user =new User(null,password,2,image,"非学员");
         userMapper.insert(user);
 
