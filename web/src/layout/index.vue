@@ -5,7 +5,9 @@
                 <Menu></Menu>
             </el-aside>
             <el-container>
-                <el-header>Header</el-header>
+                <el-header>
+                    <Tabbar></Tabbar>
+                </el-header>
                 <el-main>
                     <RouterView></RouterView>
                 </el-main>
@@ -16,6 +18,7 @@
 
 <script setup>
 import Menu from './menu/index.vue';
+import Tabbar from './tabbar/index.vue';
 </script>
 
 <style scoped>
@@ -33,6 +36,8 @@ import Menu from './menu/index.vue';
         &>.el-container {
             &>.el-header {
                 padding: 0%;
+                border-bottom: 1px rgb(0, 0, 0, 0.08) solid;
+                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
             }
         }
     }

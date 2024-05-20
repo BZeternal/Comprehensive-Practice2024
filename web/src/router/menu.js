@@ -12,9 +12,17 @@ const allMenus = [
   {
     path: '/admine/home',
     name: 'admineHome',
-    label: '首页',
+    label: '管理员首页',
     url: '../views/admineHome/index.vue',
     icon: 'house',
+    auth: 2,
+  },
+  {
+    path: '/user/chat',
+    name: 'chat',
+    label: '联系客服',
+    url: '../views/chat/index.vue',
+    icon: 'service',
     auth: 2,
   },
 ];

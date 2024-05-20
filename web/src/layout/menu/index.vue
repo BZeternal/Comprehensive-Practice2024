@@ -1,7 +1,6 @@
 <template>
-    <h3>驾校报名系统</h3>
-    <el-menu class="el-menu" background-color="#545c64" text-color="#fff" :collapse-transition="false"
-        active-text-color="#ffd04b">
+    <div style="height: 50px; text-align: center;font-size: 30px;color: aliceblue;line-height: 50px;">LOGO</div>
+    <el-menu class="el-menu" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" :collapse="false">
         <el-menu-item :index="item.path" v-for="item in menus" @click="goRoute">
             <el-icon>
                 <component :is="item.icon"></component>

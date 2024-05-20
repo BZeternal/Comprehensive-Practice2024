@@ -2,7 +2,7 @@ import './assets/main.css';
 
 import { createApp } from 'vue';
 // import { createPinia } from 'pinia';
-import pinia from '@/stores/index.js'
+import pinia from '@/stores/index.js';
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';

@@ -1,6 +1,6 @@
 <template>
     <div>
-        管理员主页
+        联系客户
     </div>
 </template>
 
@@ -8,4 +8,4 @@
 
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped></style>
