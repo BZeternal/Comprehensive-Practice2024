@@ -8,6 +8,14 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
+  server: {
+    proxy: {
+      "/jztk": {
+        target: "http://v.juhe.cn",
+        changeOrigin: true
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
