@@ -5,8 +5,7 @@
         </div>
         <div class="tabbar_right">
             <!-- 头像 -->
-            <img :src="image"
-                style="width: 24px;height: 24px;margin:0px 10px;border-radius: 50%;">
+            <img :src="image" style="width: 24px;height: 24px;margin:0px 10px;border-radius: 50%;">
             <el-dropdown style="margin: 0 20px;">
                 <span class="el-dropdown-link">
                     管理员
@@ -30,10 +29,11 @@
 
 <script setup>
 import useUserStore from '@/stores/modules/user.js';
-const userSore = useUserStore()
-let image = userSore.image
+const userStore = useUserStore()
+let image = userStore.image
+
 const logout = () => {
-    alert("等个有缘人来把这个功能写了");
+    userStore.logout();
 }
 </script>
 

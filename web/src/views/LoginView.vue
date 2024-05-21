@@ -9,7 +9,7 @@
                 <div ref="input" v-if="flag">
                     <input v-model="user.uId" class="acc" type="text" placeholder="账号">
                     <input v-model="user.password" class="acc" type="password" placeholder="密码">
-                    <button @click="login"  class="submit">Login</button>
+                    <button @click="login" class="submit">Login</button>
                     <h5 @click="go_register">注册</h5>
                 </div>
                 <div v-else>
@@ -40,19 +40,19 @@
 <script setup>
 import { reactive, ref } from 'vue';
 import * as userApi from '../api/user'
-import { ElMessage,ElMessageBox} from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import router from '@/router';
 
 let flag = ref(true)
 let user = reactive({
-    uId:'',
-    password:'',
-    rePassword:'',
-    test:''
+    uId: '',
+    password: '',
+    rePassword: '',
+    test: ''
 })
 
-const clearUser = () =>{
-    Object.keys(user).forEach(key=>{
+const clearUser = () => {
+    Object.keys(user).forEach(key => {
         user[key] = ''
     })
 }
@@ -72,14 +72,12 @@ const go_login = () => {
     flag.value = true;
 }
 
-if(sessionStorage.getItem("uId"))
-{
-    if(sessionStorage.getItem("auth") === '2')
-    {
-        router.push({name:'home'})
+if (sessionStorage.getItem("uId")) {
+    if (sessionStorage.getItem("auth") === '2') {
+        router.push({ name: 'home' })
     }
-    else{
-        router.push({name:"admineHome"})
+    else {
+        router.push({ name: "admineHome" })
     }
 }
 
@@ -89,67 +87,65 @@ let input = ref()
 let img = ref()
 const login = () => {
     userApi.login(user)
-    .then(resp=>{
-        if(resp.error_info == 'success')
-        {
-            input.value.style.display='none'
-            left.value.style.width = '40%'
-            left.value.style.height = '100%'
-            h4.value.innerText = 'Welcome!';
-            h4.value.classList.add('loginDp')
-            h4.value.style.fontSize = '2.5rem'
-            img.value.style.height = '60px'
-            img.value.style.width = '60px'
-            sessionStorage.setItem("uId",resp.uId);
-            sessionStorage.setItem("auth",resp.auth);
-            setTimeout(()=>{
-              if(resp.auth == 1 || resp.auth == 0){
-                router.push({name:"admineHome"})
+        .then(resp => {
+            if (resp.error_info == 'success') {
+                input.value.style.display = 'none'
+                left.value.style.width = '40%'
+                left.value.style.height = '100%'
+                h4.value.innerText = 'Welcome!';
+                h4.value.classList.add('loginDp')
+                h4.value.style.fontSize = '2.5rem'
+                img.value.style.height = '60px'
+                img.value.style.width = '60px'
+                sessionStorage.setItem("uId", resp.uId);
+                sessionStorage.setItem("auth", resp.auth);
+                setTimeout(() => {
+                    if (resp.auth == 1 || resp.auth == 0) {
+                        router.push({ name: "admineHome" })
+                    }
+                    else {
+                        router.push({ name: "home" })
+                    }
+                }, 600)
+
             }
-            else{
-                router.push({name:"home"})
-            }  
-            },600)
-            
-        }
-        else{
-            ElMessage({
-                message: resp.error_info,
-                type: 'error',
-            })
-        }
-    })
-    
+            else {
+                ElMessage({
+                    message: resp.error_info,
+                    type: 'error',
+                })
+            }
+        })
+
 }
 
 const register = () => {
     userApi.register(user)
-    .then(resp=>{
-        if(resp.error_info == "success")
-        {
-            ElMessageBox.confirm(
-                '您的账号为' + resp.uId,
-                '用户创建成功！',
-                {
-                    confirmButtonText: '前往登录',
-                    cancelButtonText: '关闭',
-                    type: 'success',
-                }
-            )
-            .then(() => {
-                go_login()
-            })
-            .catch(() => {
-                clearUser()
-            })
-        }
-        else{
-            ElMessage({
-                message: resp.error_info,
-                type: 'error',
-            })
-        }
-    })
+        .then(resp => {
+            if (resp.error_info == "success") {
+                ElMessageBox.confirm(
+                    '您的账号为' + resp.uId,
+                    '用户创建成功！',
+                    {
+                        confirmButtonText: '前往登录',
+                        cancelButtonText: '关闭',
+                        type: 'success',
+                    }
+                )
+                    .then(() => {
+                        go_login()
+                    })
+                    .catch(() => {
+                        clearUser()
+                    })
+            }
+            else {
+                ElMessage({
+                    message: resp.error_info,
+                    type: 'error',
+                })
+            }
+        })
 }
 
 </script>
@@ -163,7 +159,7 @@ const register = () => {
     box-sizing: border-box;
 }
 
-.loginDp{
+.loginDp {
     transform: translateY(8rem);
 }
 
