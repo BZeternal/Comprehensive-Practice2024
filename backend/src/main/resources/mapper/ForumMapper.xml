@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.ForumMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.backend.pojo.Forum">
+            <id property="fId" column="f_id" jdbcType="INTEGER"/>
+            <result property="fContent" column="f_content" jdbcType="VARCHAR"/>
+            <result property="fTime" column="f_time" jdbcType="DATE"/>
+            <result property="fTitle" column="f_title" jdbcType="VARCHAR"/>
+            <result property="fImg" column="f_img" jdbcType="VARCHAR"/>
+            <result property="fNum" column="f_num" jdbcType="INTEGER"/>
+            <result property="uId" column="u_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        f_id,f_content,f_time,
+        f_title,f_img,f_num,
+        u_id
+    </sql>
+</mapper>
