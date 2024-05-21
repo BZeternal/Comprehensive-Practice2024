@@ -5,14 +5,14 @@
 <mapper namespace="com.example.backend.mapper.ExamBmMapper">
 
     <resultMap id="BaseResultMap" type="com.example.backend.pojo.ExamBm">
-            <result property="subId" column="sub_id" jdbcType="INTEGER"/>
-            <result property="uId" column="u_id" jdbcType="INTEGER"/>
+            <id property="uId" column="u_id" jdbcType="INTEGER"/>
+            <id property="subId" column="sub_id" jdbcType="INTEGER"/>
             <result property="bmScore" column="bm_score" jdbcType="INTEGER"/>
             <result property="bmTime" column="bm_time" jdbcType="DATE"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        sub_id,u_id,bm_score,
+        u_id,sub_id,bm_score,
         bm_time
     </sql>
 </mapper>
