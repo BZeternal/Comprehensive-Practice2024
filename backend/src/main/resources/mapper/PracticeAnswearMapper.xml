@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.PracticeAnswearMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.backend.pojo.PracticeAnswear">
+            <id property="prId" column="pr_id" jdbcType="INTEGER"/>
+            <result property="uId" column="u_id" jdbcType="INTEGER"/>
+            <result property="prScore" column="pr_score" jdbcType="INTEGER"/>
+            <result property="prSubject" column="pr_subject" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        pr_id,u_id,pr_score,
+        pr_subject
+    </sql>
+</mapper>
