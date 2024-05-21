@@ -1,4 +1,4 @@
-package com.example.backend;
+package com.example.backend.utils;
 
 import com.alibaba.fastjson.JSON;
 
@@ -13,6 +13,7 @@ public class MessageUtils {
         res.put("isSys", isSys);
         res.put("fromName", fromName);
         res.put("message", message);
+        res.put("time", System.currentTimeMillis());
         return JSON.toJSONString(res);
     }
 }
