@@ -8,7 +8,7 @@
             <img :src="image" style="width: 24px;height: 24px;margin:0px 10px;border-radius: 50%;">
             <el-dropdown style="margin: 0 20px;">
                 <span class="el-dropdown-link">
-                    管理员
+                    {{ "#"+uId }}
                     <el-icon class="el-icon--right">
                         <Arrow-down />
                     </el-icon>
@@ -29,9 +29,9 @@
 
 <script setup>
 import useUserStore from '@/stores/modules/user.js';
-const userStore = useUserStore()
-let image = userStore.image
-
+const userStore = useUserStore();
+let image = userStore.image;
+let uId = userStore.uId;
 const logout = () => {
     userStore.logout();
 }

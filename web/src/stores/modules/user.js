@@ -20,9 +20,7 @@ const useUserStore = defineStore('user', {
       this.image = '';
       this.ws.close();
       this.ws = null;
-      sessionStorage.removeItem('uId');
-      sessionStorage.removeItem('auth');
-      sessionStorage.removeItem('wc');
+      sessionStorage.clear();
       router.push('/login');
     },
 

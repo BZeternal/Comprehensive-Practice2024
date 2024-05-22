@@ -42,18 +42,20 @@
                 </div>
                 <!--chatbox-->
                 <div class="content">
-                    <el-scrollbar>
-                        <div v-if="selectFlag.index != -1" class="item item-center"><span>对方已上线，现在可以开始聊天了。</span></div>
-                        <div v-for="i in messagelist">
-                            <div v-if="i.fromName == selectFlag.uId" class="item item-left">
-                                <div class="avatar"><img :src="selectFlag.img" />
+                    <el-scrollbar ref="scrollbarRef">
+                        <div ref="innerRef">
+                            <div v-if="selectFlag.index != -1" class="item item-center"><span>对方已上线，现在可以开始聊天了。</span></div>
+                            <div v-for="i in messagelist">
+                                <div v-if="i.fromName == selectFlag.uId" class="item item-left">
+                                    <div class="avatar"><img :src="selectFlag.img" />
+                                    </div>
+                                    <div class="bubble">{{ i.message }}</div>
                                 </div>
-                                <div class="bubble">{{ i.message }}</div>
-                            </div>
 
-                            <div v-if="i.toName == selectFlag.uId" class="item item-right">
-                                <div class="bubble">{{ i.message }}</div>
-                                <div class="avatar"><img :src="userImg" />
+                                <div v-if="i.toName == selectFlag.uId" class="item item-right">
+                                    <div class="bubble">{{ i.message }}</div>
+                                    <div class="avatar"><img :src="userImg" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -74,12 +76,13 @@
 
 <script setup>
 import useUserStore from '@/stores/modules/user.js';
-import { reactive, ref } from 'vue';
+import { reactive, ref, nextTick, watch } from 'vue';
 
 const userStore = useUserStore();
 const userImg = userStore.image;
 const auth = userStore.auth < 1 ? "在线用户列表" : "在线客服列表";
 const ws = userStore.ws;
+ws.onopen();
 let peoleList = reactive([]);
 ws.onmessage = (ev) => {
     const data = JSON.parse(ev.data);
@@ -122,8 +125,10 @@ const clickPeo = (index) => {
 }
 //消息列表，包括发给我的，以及我发的
 let messagelist = reactive([]);
-if (sessionStorage.getItem("mesList") != null)
-    messagelist = sessionStorage.getItem("mesList");
+if (sessionStorage.getItem("mesList") != null) {
+    messagelist = reactive(JSON.parse(sessionStorage.getItem("mesList")));
+}
+
 //一条消息
 let text = ref("");
 const sendText = () => {
@@ -138,7 +143,7 @@ const sendText = () => {
                 toName: selectFlag.uId,
                 message: text.value,
             })
-            sessionStorage.setItem("mesList", messagelist);
+            sessionStorage.setItem("mesList", JSON.stringify(messagelist));
             text.value = "";
         } catch {
             alert("对方已经离线，无法继续发送消息");
@@ -150,6 +155,16 @@ const sendText = () => {
 
 }
 
+const scrollbarRef = ref() // 滚动条实例
+const innerRef = ref() // 计数器内部实例
+//让滑动条置底
+async function setScrollToBottom() {
+    // 注意：需要通过 nextTick 以等待 DOM 更新完成
+    await nextTick()
+    const max = innerRef.value.clientHeight;
+    scrollbarRef.value.setScrollTop(max)
+}
+watch(messagelist, () => setScrollToBottom())
 </script>
 
 <style scoped>
@@ -291,7 +306,7 @@ const sendText = () => {
 
 .content {
     height: calc(100% - 60px);
-    padding: 20px 0 20px 20px;
+    padding: 0 0 20px 20px;
     background-color: rgb(245, 245, 245);
     flex: 1;
 }
