@@ -122,6 +122,8 @@ const clickPeo = (index) => {
 }
 //消息列表，包括发给我的，以及我发的
 let messagelist = reactive([]);
+if (sessionStorage.getItem("mesList") != null)
+    messagelist = sessionStorage.getItem("mesList");
 //一条消息
 let text = ref("");
 const sendText = () => {
@@ -136,6 +138,7 @@ const sendText = () => {
                 toName: selectFlag.uId,
                 message: text.value,
             })
+            sessionStorage.setItem("mesList", messagelist);
             text.value = "";
         } catch {
             alert("对方已经离线，无法继续发送消息");
