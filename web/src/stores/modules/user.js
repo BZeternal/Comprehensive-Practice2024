@@ -32,7 +32,7 @@ const useUserStore = defineStore('user', {
           this.state = res.state;
           this.image = res.image;
           this.ws = new WebSocket(`ws://localhost:3000/websocket/${res.uId}`);
-          this.ws.onopen = () => {};
+          this.ws.onopen = () => { };
           success();
         }
       });

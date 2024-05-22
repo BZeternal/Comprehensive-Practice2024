@@ -50,11 +50,14 @@ import { ref, reactive } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import * as practiceApi from '../../api/practice'
 import { Edit } from '@element-plus/icons-vue'
+import useUserStore from '@/stores/modules/user.js';
+const userSore = useUserStore()
 
 let display_flag = ref(false)
 
 let loading = ref(false) //等待标志
-let score = 0;
+let score = 0;   //得分
+let pr_num = 0; //做题数目
 let rework = ref(false)
 let flags = reactive([])
 let problem = reactive({
@@ -133,6 +136,7 @@ const ok = () => {
     let flag = flags[Number(problem.id) - 1]
     let a1 = problem.answers
     let a2 = problem.answer
+    pr_num ++ ;
     problem.disable = true
     flag.disable = true
     if (a1.length != a2.length) {
@@ -157,17 +161,25 @@ const ok = () => {
     }
     // console.log(problem)
 
-    if (problem.id == 100) {
-        rework.value = true;
-        ElMessageBox.confirm(
-            '恭喜你已完成所有测试，本次测试: ' + score + '分',
-            '成绩',
-            {
-                confirmButtonText: '继续练习',
-                cancelButtonText: '改日再做',
-                type: 'success',
-            }
-        )
+    if (pr_num == 100) {
+
+        practiceApi.insertScore({
+            uId:userSore.uId,
+            prScore:score,
+            prSubject:subject.value
+        }).then(resp=>{
+           if(resp.error_info == 'success')
+           {
+            rework.value = true;
+            ElMessageBox.confirm(
+                '恭喜你已完成所有测试，本次测试: ' + score + '分',
+                '成绩',
+                {
+                    confirmButtonText: '继续练习',
+                    cancelButtonText: '改日再做',
+                    type: 'success',
+                }
+            )
             .then(() => {
                 location.reload()
             })
@@ -175,10 +187,12 @@ const ok = () => {
                 ElMessage({
                     type: 'info',
                     message: '再接再厉',
-                })
+                 })
             })
-    }
 
+           }
+        })
+    }
 }
 
 const open = () => {
