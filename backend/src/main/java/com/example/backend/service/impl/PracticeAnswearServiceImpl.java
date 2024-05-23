@@ -4,10 +4,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.backend.pojo.PracticeAnswear;
 import com.example.backend.service.PracticeAnswearService;
 import com.example.backend.mapper.PracticeAnswearMapper;
+import com.example.backend.service.utils.PracticeCount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,11 +31,43 @@ public class PracticeAnswearServiceImpl extends ServiceImpl<PracticeAnswearMappe
         Map<String,String> map = new HashMap<>();
 
         PracticeAnswear practiceAnswear = new PracticeAnswear(null,Integer.parseInt(uId),
-                Integer.parseInt(prScore),Integer.parseInt(prSubject));
+                Integer.parseInt(prScore),Integer.parseInt(prSubject),null);
         practiceAnswearMapper.insert(practiceAnswear);
 
         map.put("error_info","success");
         return map;
+    }
+
+    @Override
+    public List<PracticeAnswear> getPracticeInfo() {
+        return practiceAnswearMapper.getPraInfo();
+    }
+
+    @Override
+    public List<PracticeCount> getPraCouInfo() {
+        return practiceAnswearMapper.getPraCouInfo();
+    }
+
+    @Override
+    public List<PracticeAnswear> findPracticeInfo(Map<String, String> data) {
+        String keyword = data.get("keyword");
+        if(keyword == null || keyword.equals(""))
+        {
+            return practiceAnswearMapper.getPraInfo();
+        }
+        data.put("keyword","%"+keyword+"%");
+        return practiceAnswearMapper.findPraInfo(data);
+    }
+
+    @Override
+    public List<PracticeCount> findPraCouInfo(Map<String, String> data) {
+        String keyword = data.get("keyword");
+        if(keyword == null || keyword.equals(""))
+        {
+            return practiceAnswearMapper.getPraCouInfo();
+        }
+        data.put("keyword","%"+keyword+"%");
+        return practiceAnswearMapper.findPraCouInfo(data);
     }
 }
 

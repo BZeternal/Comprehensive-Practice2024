@@ -22,3 +22,33 @@ export const insertScore = (data) => {
         params: data
     })
 }
+
+export const getPracticeInfo = () => {
+    return request({
+        method: 'GET',
+        url: '/practice/info',
+    })
+}
+
+export const getPraCouInfo = () => {
+    return request({
+        method: 'GET',
+        url: '/practice/count',
+    })
+}
+
+export const findPracticeInfo = (data) => {
+    return request({
+        method: 'GET',
+        url: '/practice/find',
+        params: data
+    })
+}
+
+export const findPraCouInfo = (data) => {
+    return request({
+        method: 'GET',
+        url: '/practice/find/count',
+        params: data
+    })
+}

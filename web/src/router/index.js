@@ -19,6 +19,10 @@ const router = createRouter({
         requestAuth: false,
       },
     },
+    {
+      path: '/',
+      redirect: '/login'
+    }
   ],
 });
 

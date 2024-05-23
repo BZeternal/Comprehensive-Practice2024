@@ -18,6 +18,14 @@ const allMenus = [
     auth: 2,
   },
   {
+    path: '/user/coach',
+    name: 'select_coach',
+    label: '选择教练',
+    url: '../views/coach/index.vue',
+    icon: 'avatar',
+    auth: 2,
+  },
+  {
     path: '/user/chat',
     name: 'chat',
     label: '联系客服',
@@ -33,6 +41,15 @@ const allMenus = [
     icon: 'checked',
     auth: 2,
   },
+  {
+    path: '/admine/practice',
+    name: 'admine_practice',
+    label: '学员练习情况',
+    url: '../views/practice/manage.vue',
+    icon: 'list',
+    auth: 1,
+  },
+
 ];
 
 const getMenus = auth => {

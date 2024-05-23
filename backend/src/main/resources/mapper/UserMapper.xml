@@ -16,4 +16,10 @@
         u_id,password,auth,
         image,state
     </sql>
+
+    <select id="selectByuId" resultType="com.example.backend.pojo.User">
+        SELECT *
+        FROM user
+                 LEFT JOIN apply ON user.u_id = apply.u_id where user.u_id = #{uId};
+    </select>
 </mapper>

@@ -9,6 +9,8 @@ const useUserStore = defineStore('user', {
       auth: '',
       state: '',
       image: '',
+      aName:'',
+      aCarType:'',
       ws: null,
     };
   },
@@ -18,6 +20,8 @@ const useUserStore = defineStore('user', {
       this.auth = '';
       this.state = '';
       this.image = '';
+      this.aName = '';
+      this.aCarType = '';
       this.ws.close();
       this.ws = null;
       sessionStorage.clear();
@@ -31,6 +35,8 @@ const useUserStore = defineStore('user', {
           this.auth = res.auth;
           this.state = res.state;
           this.image = res.image;
+          this.aName = res.aName;
+          this.aCarType = res.aCarType;
           this.ws = new WebSocket(`ws://localhost:3000/websocket/${res.uId}`);
           this.ws.onopen = () => { };
           success();

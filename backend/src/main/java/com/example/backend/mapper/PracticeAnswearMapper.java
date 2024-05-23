@@ -2,7 +2,11 @@ package com.example.backend.mapper;
 
 import com.example.backend.pojo.PracticeAnswear;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.backend.service.utils.PracticeCount;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+import java.util.Map;
 
 /**
 * @author 86199
@@ -12,7 +16,10 @@ import org.apache.ibatis.annotations.Mapper;
 */
 @Mapper
 public interface PracticeAnswearMapper extends BaseMapper<PracticeAnswear> {
-
+    List<PracticeAnswear> getPraInfo();
+    List<PracticeAnswear> findPraInfo(Map<String,String> data);
+    List<PracticeCount> getPraCouInfo();
+    List<PracticeCount> findPraCouInfo(Map<String,String> data);
 }
 
 

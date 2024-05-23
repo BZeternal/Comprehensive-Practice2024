@@ -45,4 +45,8 @@ public class PracticeAnswear implements Serializable {
     @JsonProperty("prSubject")
     private Integer prSubject;
 
+    @JsonProperty("aName")
+    @TableField(exist = false)
+    private String aName;
+
 }
