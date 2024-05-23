@@ -50,4 +50,12 @@ public class User implements Serializable {
      */
     @JsonProperty("state")
     private String state;
+
+    @TableField(exist = false)
+    @JsonProperty("aName")
+    String aName;
+
+    @TableField(exist = false)
+    @JsonProperty("aCarType")
+    String aCarType;
 }

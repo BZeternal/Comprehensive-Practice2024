@@ -1,8 +1,11 @@
 package com.example.backend.mapper;
 
+import com.example.backend.pojo.Coach;
 import com.example.backend.pojo.SelectTea;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.Map;
 
 /**
 * @author 86199
@@ -13,6 +16,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface SelectTeaMapper extends BaseMapper<SelectTea> {
 
+    Coach selectCoach(Map<String,String> data);
 }
 
 

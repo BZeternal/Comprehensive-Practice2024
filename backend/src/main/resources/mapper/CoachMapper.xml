@@ -23,4 +23,8 @@
         c_car_type,c_pic,c_pass,
         c_te_type
     </sql>
+
+    <select id="chooseCoachList" resultType="com.example.backend.pojo.Coach">
+        select * from coach where c_car_type = #{cCarType} and c_te_type = #{cTeType}
+    </select>
 </mapper>

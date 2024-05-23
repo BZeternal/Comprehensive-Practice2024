@@ -15,4 +15,59 @@
         pr_id,u_id,pr_score,
         pr_subject
     </sql>
+
+    <select id="getPraInfo" resultType="com.example.backend.pojo.PracticeAnswear">
+        SELECT
+            practice_answear.u_id,
+            pr_subject,
+            pr_score,
+            pr_id,
+            a_name
+        FROM practice_answear,apply where practice_answear.u_id = apply.u_id
+        ORDER BY u_id, pr_subject, pr_score DESC;
+    </select>
+
+    <select id="findPraInfo" resultType="com.example.backend.pojo.PracticeAnswear">
+        SELECT
+            practice_answear.u_id,
+            pr_subject,
+            pr_score,
+            pr_id,
+            a_name
+        FROM practice_answear,apply where practice_answear.u_id = apply.u_id and ${type} like #{keyword}
+        ORDER BY u_id, pr_subject, pr_score DESC;
+    </select>
+
+    <select id="getPraCouInfo" resultType="com.example.backend.service.utils.PracticeCount">
+        SELECT
+            pa.u_id,
+            pa.pr_subject,
+            COUNT(*) as count,
+            AVG(pa.pr_score) as avg_value,
+            MAX(pa.pr_score) as max_value,
+            SUM(CASE WHEN pa.pr_score > 90 THEN 1 ELSE 0 END) as qua_num,
+            a.a_name
+        FROM practice_answear pa
+                 JOIN apply a ON pa.u_id = a.u_id
+        GROUP BY pa.u_id, pa.pr_subject, a.a_name
+        ORDER BY pa.u_id, pa.pr_subject;
+    </select>
+
+    <select id="findPraCouInfo" resultType="com.example.backend.service.utils.PracticeCount">
+        SELECT
+            pa.u_id,
+            pa.pr_subject,
+            COUNT(*) as count,
+            AVG(pa.pr_score) as avg_value,
+            MAX(pa.pr_score) as max_value,
+            SUM(CASE WHEN pa.pr_score > 90 THEN 1 ELSE 0 END) as qua_num,
+            a.a_name
+        FROM practice_answear pa
+                 JOIN apply a ON pa.u_id = a.u_id
+        WHERE ${type} like #{keyword}
+        GROUP BY pa.u_id, pa.pr_subject, a.a_name
+        ORDER BY pa.u_id, pa.pr_subject;
+    </select>
+
+
 </mapper>

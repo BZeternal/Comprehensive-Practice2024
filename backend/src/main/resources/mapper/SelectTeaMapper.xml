@@ -15,4 +15,8 @@
         u_id,c_id,sel_type,
         sel_time
     </sql>
+
+    <select id="selectCoach" resultType="com.example.backend.pojo.Coach">
+        select * from select_tea,coach where coach.c_id = select_tea.c_id and u_id= #{uId} and sel_type = #{selType}
+    </select>
 </mapper>

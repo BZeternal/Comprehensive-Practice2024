@@ -2,7 +2,9 @@ package com.example.backend.service;
 
 import com.example.backend.pojo.PracticeAnswear;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.backend.service.utils.PracticeCount;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,4 +14,8 @@ import java.util.Map;
 */
 public interface PracticeAnswearService extends IService<PracticeAnswear> {
     Map<String,String> insertScore(Map<String,String> data);
+    List<PracticeAnswear> getPracticeInfo();
+    List<PracticeCount> getPraCouInfo();
+    List<PracticeAnswear> findPracticeInfo(Map<String,String> data);
+    List<PracticeCount> findPraCouInfo(Map<String,String> data);
 }

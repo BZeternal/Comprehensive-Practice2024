@@ -1,10 +1,16 @@
 package com.example.backend.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.backend.pojo.SubType;
 import com.example.backend.service.SubTypeService;
 import com.example.backend.mapper.SubTypeMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
 * @author 86199

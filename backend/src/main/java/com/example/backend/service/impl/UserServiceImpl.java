@@ -101,7 +101,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
         int num = (int) (Math.random()*7 + 1);
         String image = "http://47.115.203.179:8086/img"+ num + ".jpg";
-        User user =new User(null,password,2,image,"非学员");
+        User user =new User(null,password,2,image,"非学员",null,null);
         userMapper.insert(user);
 
         map.put("error_info","success");
@@ -112,13 +112,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Override
     public Map<String, String> getUserInfo(Map<String,String> data) {
         String uId = data.get("uId");
-        User user = userMapper.selectById(Integer.parseInt(uId));
+        User user = userMapper.selectByuId(Integer.parseInt(uId));
         Map<String,String> map = new HashMap<>();
         map.put("error_info","success");
         map.put("uId",user.getUId().toString());
         map.put("auth",user.getAuth().toString());
         map.put("image", user.getImage());
         map.put("state",user.getState());
+        map.put("aName",user.getAName());
+        map.put("aCarType", user.getACarType());
         return map;
     }
 }

@@ -81,4 +81,22 @@ public class Coach implements Serializable {
     @JsonProperty("cTeType")
     private String cTeType;
 
+    /**
+     * 教练简介
+     */
+    @JsonProperty("cText")
+    private String cText;
+
+    /**
+     * 电话
+     */
+    @JsonProperty("cTel")
+    private String cTel;
+
+    /**
+     * 微信
+     */
+    @JsonProperty("cChat")
+    private String cChat;
+
 }
