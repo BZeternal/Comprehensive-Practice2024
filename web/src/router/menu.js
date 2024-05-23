@@ -57,6 +57,14 @@ const allMenus = [
     icon: 'calendar',
     auth: 1,
   },
+  {
+    path: '/admine/auth',
+    name: 'auth',
+    label: '权限管理',
+    url: '../views/authManager/index.vue',
+    icon: 'lock',
+    auth: 1,
+  }
 
 ];
 
