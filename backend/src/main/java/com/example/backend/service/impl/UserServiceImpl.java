@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -122,6 +123,48 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         map.put("aName",user.getAName());
         map.put("aCarType", user.getACarType());
         return map;
+    }
+
+    @Override
+    public int updatePassword(Map<String, Object> data) {
+        int uId = Integer.parseInt((String) data.get("uId")) ;
+        String oldPass = (String) data.get("oldPass");
+        String newPass = (String) data.get("newPass");
+
+        User user = userMapper.selectByuId(uId);
+        try {
+            if(user.getPassword().equals(oldPass)){
+                user.setPassword(newPass);
+                userMapper.updateById(user);
+                return 0;
+            }else
+                return 1;
+        }catch (Exception e){
+            return 2;
+        }
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        return userMapper.selectList(null);
+    }
+
+    @Override
+    public int updateAuth(int uId, int newAuth) {
+        try {
+            User user = userMapper.selectById(uId);
+            user.setAuth(newAuth);
+            if (newAuth == 0)
+                user.setState("系统管理员");
+            else if (newAuth == 1)
+                user.setState("驾校管理员");
+            else
+                user.setState("学员");
+            userMapper.updateById(user);
+            return 1;
+        }catch (Exception e){
+            return 0;
+        }
     }
 }
 

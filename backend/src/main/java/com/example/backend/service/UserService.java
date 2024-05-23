@@ -3,6 +3,7 @@ package com.example.backend.service;
 import com.example.backend.pojo.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,4 +16,7 @@ public interface UserService extends IService<User> {
     Map<String,String> register(Map<String,String> data);
 
     Map<String,String> getUserInfo(Map<String,String> data);
+    int updatePassword(Map<String,Object> data);
+    List<User> getAllUser();
+    int updateAuth(int uId, int newAuth);
 }

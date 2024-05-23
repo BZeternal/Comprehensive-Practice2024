@@ -23,3 +23,28 @@ export const getUserInfo = (data) => {
         params: { uId: data }
     })
 }
+
+export const updatePassword = (uId, oldPass, newPass) => {
+    return request.post("/user/update_password",
+        {
+            uId: uId,
+            oldPass: oldPass,
+            newPass: newPass
+        }
+    );
+}
+
+export const getAllpeo = () => {
+    return request.post("/user/getAll");
+}
+
+export const updateAuth = (uId, newAuth) => {
+    return request({
+        method: "POST",
+        url: "/user/update_auth",
+        params: {
+            uId: uId,
+            newAuth: newAuth
+        },
+    });
+}
