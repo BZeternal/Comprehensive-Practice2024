@@ -5,6 +5,7 @@ import useUserStore from '@/stores/modules/user.js';
 import pinia from '@/stores';
 import { ElNotification } from 'element-plus';
 import { ElMessage, ElMessageBox } from 'element-plus';
+const modules = import.meta.glob('../views/**/**.vue');
 
 let userStore = useUserStore(pinia);
 
@@ -91,13 +92,19 @@ const menus = getMenus(4);
 let tmp = {
   path: '/home',
   component: () => import('../layout/index.vue'),
-  children: [],
+  children: [
+    {
+      path: '/personalInfo',
+      name: 'personalInfo',
+      component: () => import('../views/personalInfo/index.vue'),
+    },
+  ],
 };
 menus.forEach(i => {
   tmp.children.push({
     path: i.path,
     name: i.name,
-    component: () => import(i.url),
+    component: modules[`${i.url}`],
   });
 });
 router.addRoute(tmp);
