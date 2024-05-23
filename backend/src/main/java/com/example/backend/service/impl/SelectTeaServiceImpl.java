@@ -1,6 +1,8 @@
 package com.example.backend.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.backend.mapper.CoachMapper;
+import com.example.backend.pojo.Coach;
 import com.example.backend.pojo.SelectTea;
 import com.example.backend.service.SelectTeaService;
 import com.example.backend.mapper.SelectTeaMapper;
@@ -21,6 +23,8 @@ public class SelectTeaServiceImpl extends ServiceImpl<SelectTeaMapper, SelectTea
     implements SelectTeaService{
     @Autowired
     SelectTeaMapper selectTeaMapper;
+    @Autowired
+    CoachMapper coachMapper;
     @Override
     public Map<String, String> chooseCoach(Map<String, String> data) {
         String uId = data.get("uId");
@@ -30,6 +34,10 @@ public class SelectTeaServiceImpl extends ServiceImpl<SelectTeaMapper, SelectTea
 
         SelectTea selectTea = new SelectTea(Integer.parseInt(uId),Integer.parseInt(cId),selType,selTime);
         selectTeaMapper.insert(selectTea);
+
+        Coach coach = coachMapper.selectById(Integer.parseInt(cId));
+        coach.setCNum(coach.getCNum() + 1);
+        coachMapper.updateById(coach);
 
         Map<String,String> map = new HashMap<>();
         map.put("error_info","success");

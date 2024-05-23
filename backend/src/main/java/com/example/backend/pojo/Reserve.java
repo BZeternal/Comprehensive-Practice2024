@@ -23,6 +23,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Reserve implements Serializable {
+
+    @TableId(type = IdType.AUTO)
+    @JsonProperty("resId")
+    Integer resId;
     /**
      * 类型编号
      */
@@ -39,14 +43,16 @@ public class Reserve implements Serializable {
      * 预约开始时间
      */
     @JsonProperty("staTime")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone="GMT+8")
     private Date staTime;
 
     /**
-     * 预约时长
+     * 预约结束时间
      */
     @JsonProperty("enTime")
-    private Double enTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone="GMT+8")
+    private Date enTime;
 
 }

@@ -49,6 +49,14 @@ const allMenus = [
     icon: 'list',
     auth: 1,
   },
+  {
+    path: '/user/reserve',
+    name: 'reserve',
+    label: '预约学车',
+    url: '../views/reserve/index.vue',
+    icon: 'calendar',
+    auth: 1,
+  },
 
 ];
 
