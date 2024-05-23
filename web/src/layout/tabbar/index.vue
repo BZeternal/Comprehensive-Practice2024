@@ -8,7 +8,7 @@
             <img :src="image" style="width: 24px;height: 24px;margin:0px 10px;border-radius: 50%;">
             <el-dropdown style="margin: 0 20px;">
                 <span class="el-dropdown-link">
-                    {{ "#"+uId }}
+                    {{ "#" + uId }}
                     <el-icon class="el-icon--right">
                         <Arrow-down />
                     </el-icon>
@@ -16,7 +16,7 @@
 
                 <template #dropdown>
                     <el-dropdown-menu>
-                        <el-dropdown-item @click="logout">个人中心</el-dropdown-item>
+                        <el-dropdown-item @click="goTo()">个人中心</el-dropdown-item>
                     </el-dropdown-menu>
                     <el-dropdown-menu>
                         <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
@@ -29,11 +29,16 @@
 
 <script setup>
 import useUserStore from '@/stores/modules/user.js';
+import { useRouter } from 'vue-router';
 const userStore = useUserStore();
+let router = useRouter();
 let image = userStore.image;
 let uId = userStore.uId;
 const logout = () => {
     userStore.logout();
+}
+const goTo = () => {
+    router.push({ name: "personalInfo" })
 }
 </script>
 
