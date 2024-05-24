@@ -16,4 +16,6 @@ public interface ReserveService extends IService<Reserve> {
     Map<String,String> insertReserve(Map<String,String> data);
 
     Map<String,String> deleteReserve(Map<String,String> data);
+
+    List<Reserve> getPro();
 }

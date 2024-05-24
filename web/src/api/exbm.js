@@ -7,3 +7,10 @@ export const judgeType = (data) => {
         params:data
     })
 }
+
+export const getInfo = () => {
+    return request({
+        method: 'GET',
+        url: '/eb/info/list',
+    })
+}

@@ -72,6 +72,22 @@ const allMenus = [
     url: '../views/coach/manage.vue',
     icon: 'avatar',
     auth: 1,
+  },
+  {
+    path:'/admine/studyPro',
+    name: 'admine_studyPro',
+    label: '学员学习进度',
+    url: '../views/studyPro/index.vue',
+    icon: 'view',
+    auth: 1,
+  },
+  {
+    path:'/admine/score',
+    name: 'admine_score',
+    label: '学员成绩',
+    url: '../views/score/index.vue',
+    icon: 'tickets',
+    auth: 1,
   }
 
 ];

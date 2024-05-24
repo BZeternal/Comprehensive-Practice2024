@@ -1,6 +1,8 @@
 package com.example.backend.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.backend.mapper.ExamBmMapper;
+import com.example.backend.pojo.ExamBm;
 import com.example.backend.pojo.Reserve;
 import com.example.backend.service.ReserveService;
 import com.example.backend.mapper.ReserveMapper;
@@ -9,10 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
 * @author 86199
@@ -24,6 +23,8 @@ public class ReserveServiceImpl extends ServiceImpl<ReserveMapper, Reserve>
     implements ReserveService{
     @Autowired
     ReserveMapper reserveMapper;
+    @Autowired
+    ExamBmMapper examBmMapper;
     @Override
     public List<Reserve> findReserveByUser(Map<String, String> data) {
         return reserveMapper.findReserveByUser(data);
@@ -47,7 +48,7 @@ public class ReserveServiceImpl extends ServiceImpl<ReserveMapper, Reserve>
             throw new RuntimeException(e);
         }
 
-        Reserve reserve = new Reserve(null,Integer.parseInt(subId),Integer.parseInt(uId),date1,date2);
+        Reserve reserve = new Reserve(null,Integer.parseInt(subId),Integer.parseInt(uId),date1,date2,null);
         reserveMapper.insert(reserve);
 
         Map<String,String> map = new HashMap<>();
@@ -66,6 +67,54 @@ public class ReserveServiceImpl extends ServiceImpl<ReserveMapper, Reserve>
         }
         map.put("error_info","error");
         return map;
+    }
+
+    @Override
+    public List<Reserve> getPro() {
+        List<ExamBm> examBms = examBmMapper.findPro();
+        List<Reserve> reserveList = reserveMapper.getTotalHours();
+        List<Reserve> reserves = new ArrayList<>();
+        for(ExamBm i : examBms)
+        {
+            if(i.getSubId() == null || (i.getSubId() == 1 && (i.getBmScore() == null || i.getBmScore() < 90)))
+            {
+                Reserve reserve = new Reserve();
+                reserve.setSubId(1);
+                reserve.setUId(i.getUId());
+                reserves.add(reserve);
+            }else if((i.getSubId() == 1 && i.getBmScore() >= 90) || (i.getSubId() == 2 &&
+                    (i.getBmScore() == null ||i.getBmScore() < 80 ))){
+                Reserve reserve = new Reserve();
+                reserve.setSubId(2);
+                reserve.setUId(i.getUId());
+                reserve.setTotalHours(getHour(reserveList,2,i.getUId()));
+                reserves.add(reserve);
+            } else if ((i.getSubId() == 2 && i.getBmScore() >= 80) || (i.getSubId() == 3 &&
+                    (i.getBmScore() == null || i.getBmScore() < 80))) {
+                Reserve reserve = new Reserve();
+                reserve.setSubId(3);
+                reserve.setUId(i.getUId());
+                reserve.setTotalHours(getHour(reserveList,3,i.getUId()));
+                reserves.add(reserve);
+            }else {
+                Reserve reserve = new Reserve();
+                reserve.setSubId(4);
+                reserve.setUId(i.getUId());
+                reserves.add(reserve);
+            }
+        }
+        return reserves;
+    }
+
+    public Double getHour(List<Reserve> reserveList, Integer subId,Integer uId){
+        for(Reserve reserve : reserveList)
+        {
+            if(reserve.getUId().equals(uId) && reserve.getSubId().equals(subId))
+            {
+                return reserve.getTotalHours();
+            }
+        }
+        return null;
     }
 }
 
