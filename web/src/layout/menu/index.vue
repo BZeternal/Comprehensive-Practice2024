@@ -13,9 +13,10 @@
 </template>
 
 <script setup>
+import useUserStore from '@/stores/modules/user';
 import getMenus from '../../router/menu.js'
 import { useRouter } from 'vue-router';
-let menus = getMenus(4);
+let menus = getMenus(useUserStore().auth);
 //获取路由器对象
 let $router = useRouter();
 //点击菜单的回调

@@ -15,7 +15,7 @@ const allMenus = [
     label: '管理员首页',
     url: '../views/admineHome/index.vue',
     icon: 'house',
-    auth: 2,
+    auth: 1,
   },
   {
     path: '/user/coach',
@@ -31,7 +31,7 @@ const allMenus = [
     label: '联系客服',
     url: '../views/chat/index.vue',
     icon: 'service',
-    auth: 2,
+    auth: 3,
   },
   {
     path: '/user/practice',
@@ -63,17 +63,18 @@ const allMenus = [
     label: '权限管理',
     url: '../views/authManager/index.vue',
     icon: 'lock',
-    auth: 1,
-  }
+    auth: 0,
+  },
 
 ];
 
 const getMenus = auth => {
   const menus = [];
   allMenus.forEach(i => {
-    if (auth == i.auth || auth == 4) menus.push(i);
+    if (auth == i.auth || (i.auth == 3 && auth != 0) || (auth == 0 && i.auth == 1)) menus.push(i);
   });
   return menus;
 };
+
 
 export default getMenus;

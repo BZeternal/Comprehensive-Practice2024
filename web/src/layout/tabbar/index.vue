@@ -3,6 +3,9 @@
         <div class="tabbar_left">
             此处还有功能
         </div>
+        <div v-if="st == '非学员'" @click="() => {
+            router.push({ name: 'apply' })
+        }">你还未报名，点此去报名</div>
         <div class="tabbar_right">
             <!-- 头像 -->
             <img :src="image" style="width: 24px;height: 24px;margin:0px 10px;border-radius: 50%;">
@@ -34,6 +37,8 @@ const userStore = useUserStore();
 let router = useRouter();
 let image = userStore.image;
 let uId = userStore.uId;
+let st = userStore.state;
+console.log(st);
 const logout = () => {
     userStore.logout();
 }

@@ -42,7 +42,7 @@ import { reactive, ref } from 'vue';
 import * as userApi from '../api/user'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import router from '@/router';
-
+import { dynamicRouter } from '@/router';
 let flag = ref(true)
 let user = reactive({
     uId: '',
@@ -99,6 +99,9 @@ const login = () => {
                 img.value.style.width = '60px'
                 sessionStorage.setItem("uId", resp.uId);
                 sessionStorage.setItem("auth", resp.auth);
+                sessionStorage.setItem("st", resp.st);
+                dynamicRouter();
+                console.log(router.getRoutes());
                 setTimeout(() => {
                     if (resp.auth == 1 || resp.auth == 0) {
                         router.push({ name: "admineHome" })

@@ -7,7 +7,6 @@
 <script setup>
 import useUserStore from '@/stores/modules/user.js';
 const userSore = useUserStore()
-console.log(userSore.auth)
 
 </script>
 

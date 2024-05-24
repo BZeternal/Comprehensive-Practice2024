@@ -67,6 +67,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         map.put("error_info","success");
         map.put("uId",user.getUId().toString());
         map.put("auth",user.getAuth().toString());
+        map.put("st", user.getState());
         return map;
     }
 
@@ -165,6 +166,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         }catch (Exception e){
             return 0;
         }
+    }
+
+    @Override
+    public void updateSt(int uId, String str){
+        User user = userMapper.selectByuId(uId);
+        user.setState(str);
+        userMapper.updateById(user);
     }
 }
 

@@ -48,3 +48,14 @@ export const updateAuth = (uId, newAuth) => {
         },
     });
 }
+
+export const addUserInfo = (apply, healthForm) => {
+    return request({
+        method: "POST",
+        url: "/user/addUserInfo",
+        data: {
+            apply,
+            healthFrom,
+        },
+    });
+}

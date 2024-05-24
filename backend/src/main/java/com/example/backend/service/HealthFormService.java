@@ -9,5 +9,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2024-05-14 17:44:31
 */
 public interface HealthFormService extends IService<HealthForm> {
-
+    public void addHealth(HealthForm healthForm);
 }

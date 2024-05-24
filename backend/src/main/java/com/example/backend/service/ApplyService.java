@@ -9,5 +9,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2024-05-14 17:44:20
 */
 public interface ApplyService extends IService<Apply> {
-
+    public void addApply(Apply apply);
 }

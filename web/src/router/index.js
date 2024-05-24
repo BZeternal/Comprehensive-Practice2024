@@ -92,24 +92,37 @@ router.beforeEach((to, _from, next) => {
   }
 });
 
-const menus = getMenus(4);
-let tmp = {
-  path: '/home',
-  component: () => import('../layout/index.vue'),
-  children: [
-    {
-      path: '/personalInfo',
-      name: 'personalInfo',
-      component: () => import('../views/personalInfo/index.vue'),
-    },
-  ],
-};
-menus.forEach(i => {
-  tmp.children.push({
-    path: i.path,
-    name: i.name,
-    component: modules[`${i.url}`],
+export const dynamicRouter = () => {
+  let auth = sessionStorage.getItem("auth");
+  let state = sessionStorage.getItem("st");
+  const menus = getMenus(auth);
+  let tmp = {
+    path: '/home',
+    component: () => import('../layout/index.vue'),
+    children: [
+      {
+        path: '/personalInfo',
+        name: 'personalInfo',
+        component: () => import('../views/personalInfo/index.vue'),
+      },
+    ],
+  };
+  menus.forEach(i => {
+    tmp.children.push({
+      path: i.path,
+      name: i.name,
+      component: modules[`${i.url}`],
+    });
   });
-});
-router.addRoute(tmp);
+  if (auth == 2 && state == "非学员")
+    tmp.children.push({
+      path: '/user/apply',
+      name: 'apply',
+      component: () => import('../views/apply/index.vue'),
+    })
+  router.addRoute(tmp);
+}
+
+if (sessionStorage.getItem("auth") != null)
+  dynamicRouter();
 export default router;

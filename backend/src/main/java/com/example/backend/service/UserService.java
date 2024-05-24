@@ -19,4 +19,6 @@ public interface UserService extends IService<User> {
     int updatePassword(Map<String,Object> data);
     List<User> getAllUser();
     int updateAuth(int uId, int newAuth);
+
+    void updateSt(int uId, String str);
 }
