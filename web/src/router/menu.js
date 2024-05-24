@@ -55,7 +55,7 @@ const allMenus = [
     label: '预约学车',
     url: '../views/reserve/index.vue',
     icon: 'calendar',
-    auth: 1,
+    auth: 2,
   },
   {
     path: '/admine/auth',
@@ -63,6 +63,14 @@ const allMenus = [
     label: '权限管理',
     url: '../views/authManager/index.vue',
     icon: 'lock',
+    auth: 1,
+  },
+  {
+    path:'/admine/coach',
+    name: 'admine_coach',
+    label: '教练管理',
+    url: '../views/coach/manage.vue',
+    icon: 'avatar',
     auth: 1,
   }
 
