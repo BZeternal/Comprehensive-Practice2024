@@ -1,5 +1,6 @@
 package com.example.backend.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.backend.mapper.SelectTeaMapper;
 import com.example.backend.pojo.Coach;
@@ -8,6 +9,7 @@ import com.example.backend.mapper.CoachMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,6 +43,47 @@ public class CoachServiceImpl extends ServiceImpl<CoachMapper, Coach>
         else t = "科三";
         data.put("cTeType",t);
         return coachMapper.chooseCoachList(data);
+    }
+
+    @Override
+    public List<Coach> findCoach(Map<String, String> data) {
+        String type = data.get("type");
+        String keyword = data.get("keyword");
+
+        if(keyword == null || keyword.equals("")){
+            return coachMapper.selectList(null);
+        }
+
+        QueryWrapper<Coach> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like(type,keyword);
+        return  coachMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public Map<String, String> insertCoach(Coach coach) {
+        Map<String,String> map = new HashMap<>();
+        map.put("error_info","success");
+
+        coachMapper.insert(coach);
+        return map;
+    }
+
+    @Override
+    public Map<String, String> updateCoach(Coach coach) {
+        Map<String,String> map = new HashMap<>();
+        map.put("error_info","success");
+
+        coachMapper.updateById(coach);
+        return map;
+    }
+
+    @Override
+    public Map<String, String> deleteCoach(Map<String,String> data) {
+        Map<String,String> map = new HashMap<>();
+        map.put("error_info","success");
+
+        coachMapper.deleteById(Integer.parseInt(data.get("cId")));
+        return map;
     }
 }
 

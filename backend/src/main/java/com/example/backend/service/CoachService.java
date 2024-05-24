@@ -16,4 +16,9 @@ public interface CoachService extends IService<Coach> {
     List<Coach> getCoachInfo();   //获取所有教练信息
     Coach selectCoach(Map<String,String> data);  //根据uId和科目获取教练信息
     List<Coach> chooseCoachList(Map<String,String> data); //根据驾驶类型和科目获取教练信息列表
+    List<Coach> findCoach(Map<String,String> data);
+    Map<String,String> insertCoach(Coach coach);
+    Map<String,String> updateCoach(Coach coach);
+
+    Map<String,String> deleteCoach(Map<String,String> data);
 }

@@ -22,3 +22,35 @@ export const chooseCoachList = (data) => {
         params:data
     })
 }
+
+export const findCoach = (data) => {
+    return request({
+        method: 'GET',
+        url: '/coach/find',
+        params:data
+    })
+}
+
+export const insertCoach = (data) => {
+    return request({
+        method: 'POST',
+        url: '/coach/insert',
+        data:data
+    })
+}
+
+export const updateCoach = (data) => {
+    return request({
+        method: 'POST',
+        url: '/coach/update',
+        data:data
+    })
+}
+
+export const deleteCoach = (data) => {
+    return request({
+        method: 'POST',
+        url: '/coach/delete',
+        data:data
+    })
+}
