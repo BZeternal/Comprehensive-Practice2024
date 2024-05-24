@@ -16,6 +16,7 @@ import java.util.Map;
 @Mapper
 public interface ReserveMapper extends BaseMapper<Reserve> {
     List<Reserve> findReserveByUser(Map<String,String> data);
+    List<Reserve> getTotalHours();
 }
 
 

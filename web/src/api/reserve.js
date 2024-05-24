@@ -23,3 +23,10 @@ export const deleteReserve = (data) => {
         params: data
     })
 }
+
+export const getPro = () => {
+    return request({
+        method:'GET',
+        url:'/reserve/getPro',
+    })
+}

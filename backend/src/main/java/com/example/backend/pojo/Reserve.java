@@ -55,4 +55,8 @@ public class Reserve implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone="GMT+8")
     private Date enTime;
 
+    @TableField(exist = false)
+    @JsonProperty("totalHours")
+    Double totalHours;
+
 }

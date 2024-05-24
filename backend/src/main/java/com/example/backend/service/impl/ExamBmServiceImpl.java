@@ -58,6 +58,11 @@ public class ExamBmServiceImpl extends ServiceImpl<ExamBmMapper, ExamBm>
         map.put("subId", null);
         return map;
     }
+
+    @Override
+    public List<ExamBm> getInfo() {
+        return examBmMapper.getInfo();
+    }
 }
 
 

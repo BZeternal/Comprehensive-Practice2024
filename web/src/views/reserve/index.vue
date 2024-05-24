@@ -1,6 +1,6 @@
 <template>
   <div style="display: flex">
-    <div style="margin-top: 2rem">
+    <div v-if="subId != null" style="margin-top: 2rem">
       <el-button
         @click="
           () => {

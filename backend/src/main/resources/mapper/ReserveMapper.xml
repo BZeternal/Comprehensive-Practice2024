@@ -19,4 +19,15 @@
     <select id="findReserveByUser" resultType="com.example.backend.pojo.Reserve">
         select * from  reserve where  u_id = #{uId} and sub_id = #{subId} ORDER BY sta_time ASC;
     </select>
+
+    <select id="getTotalHours" resultType="com.example.backend.pojo.Reserve">
+        SELECT
+            u_id,
+            sub_id,
+            SUM(TIMESTAMPDIFF(SECOND, sta_time, en_time)) / 3600 AS total_hours
+        FROM
+            reserve
+        GROUP BY
+            u_id, sub_id;
+    </select>
 </mapper>

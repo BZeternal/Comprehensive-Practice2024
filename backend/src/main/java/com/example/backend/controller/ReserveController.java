@@ -32,4 +32,9 @@ public class ReserveController {
         return reserveService.deleteReserve(data);
     }
 
+    @GetMapping("/api/reserve/getPro")
+    List<Reserve> getPro(){
+        return reserveService.getPro();
+    }
+
 }

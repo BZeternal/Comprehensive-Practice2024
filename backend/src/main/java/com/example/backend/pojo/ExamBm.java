@@ -49,4 +49,12 @@ public class ExamBm implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date bmTime;
 
+    @TableField(exist = false)
+    @JsonProperty("aName")
+    String aName;
+
+    @TableField(exist = false)
+    @JsonProperty("aCarType")
+    String aCarType;
+
 }

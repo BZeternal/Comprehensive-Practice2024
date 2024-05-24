@@ -3,6 +3,7 @@ package com.example.backend.service;
 import com.example.backend.pojo.ExamBm;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,4 +13,5 @@ import java.util.Map;
 */
 public interface ExamBmService extends IService<ExamBm> {
     Map<String,String> judgeType(Map<String,String> data);
+    List<ExamBm> getInfo(); //获取所有成绩信息
 }

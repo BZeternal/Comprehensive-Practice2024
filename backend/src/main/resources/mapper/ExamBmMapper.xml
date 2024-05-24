@@ -15,4 +15,24 @@
         u_id,sub_id,bm_score,
         bm_time
     </sql>
+
+    <select id="findPro" resultType="com.example.backend.pojo.ExamBm">
+        SELECT u.*, e.*
+        FROM user u
+                 LEFT JOIN (
+            SELECT e1.*
+            FROM exam_bm e1
+                     INNER JOIN (
+                SELECT u_id, MAX(sub_id) AS max_sub_id
+                FROM exam_bm
+                GROUP BY u_id
+            ) AS e2
+                                ON e1.u_id = e2.u_id AND e1.sub_id = e2.max_sub_id
+        ) AS e
+                           ON u.u_id = e.u_id WHERE u.state = '学员'
+    </select>
+
+    <select id="getInfo" resultType="com.example.backend.pojo.ExamBm">
+        select * from exam_bm,apply where exam_bm.u_id = apply.u_id ORDER BY  bm_score IS NOT NULL, exam_bm.u_id;
+    </select>
 </mapper>
