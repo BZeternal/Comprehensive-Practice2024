@@ -14,4 +14,7 @@ import java.util.Map;
 public interface ExamBmService extends IService<ExamBm> {
     Map<String,String> judgeType(Map<String,String> data);
     List<ExamBm> getInfo(); //获取所有成绩信息
+    Map<String,String> updateScore(Map<String,String> data);
+
+    List<ExamBm> findInfo(Map<String,String> data); //模糊查询
 }

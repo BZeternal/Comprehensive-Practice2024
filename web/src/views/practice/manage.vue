@@ -48,7 +48,16 @@
       <el-table :data="practice_info" stripe border style="width: 100%">
         <el-table-column prop="uId" label="用户" />
         <el-table-column prop="aName" label="姓名" />
-        <el-table-column prop="prScore" label="分数" />
+        <el-table-column label="分数">
+          <template #default="scope">
+            <el-tag v-if="scope.row.prScore >= 90" size="large">{{
+              scope.row.prScore
+            }}</el-tag>
+            <el-tag v-else type="danger" size="large">{{
+              scope.row.prScore
+            }}</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column prop="prSubject" label="科目" />
       </el-table>
     </el-tab-pane>
@@ -100,8 +109,27 @@
       <el-table :data="pracou_info" stripe border style="width: 100%">
         <el-table-column prop="uId" label="用户" />
         <el-table-column prop="aName" label="姓名" />
-        <el-table-column prop="maxValue" label="最高成绩" />
-        <el-table-column prop="avgValue" label="平均成绩" />
+        <el-table-column label="最高成绩">
+          <template #default="scope">
+            <el-tag v-if="scope.row.maxValue >= 90" size="large">{{
+              scope.row.maxValue
+            }}</el-tag>
+            <el-tag v-else type="danger" size="large">{{
+              scope.row.maxValue
+            }}</el-tag>
+          </template>
+        </el-table-column>
+
+        <el-table-column label="平均成绩">
+          <template #default="scope">
+            <el-tag v-if="scope.row.avgValue >= 90" size="large">{{
+              scope.row.avgValue
+            }}</el-tag>
+            <el-tag v-else type="danger" size="large">{{
+              scope.row.avgValue
+            }}</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column prop="quaNum" label="合格次数" />
         <el-table-column prop="count" label="答题次数" />
         <el-table-column prop="prSubject" label="科目" />

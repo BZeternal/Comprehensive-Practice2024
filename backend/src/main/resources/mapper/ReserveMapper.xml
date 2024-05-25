@@ -30,4 +30,41 @@
         GROUP BY
             u_id, sub_id;
     </select>
+
+    <select id="getEveryHourNum" resultType="com.example.backend.service.utils.HourNum">
+        SELECT
+            DATE_FORMAT(sta_time, '%Y-%m-%d %H:00') AS timeString,
+            COUNT(u_id) AS count
+        FROM
+            reserve
+        WHERE
+            DATE(sta_time) = CURDATE()
+          AND HOUR(sta_time) BETWEEN 8 AND 19
+        GROUP BY
+            timeString;
+    </select>
+
+    <select id="getSubIdNum" resultType="com.example.backend.service.utils.SubNum">
+        select sub_id,count(*) as count from reserve where  DATE(sta_time) = CURDATE()group by sub_id;
+    </select>
+
+    <select id="getCarTypeNum" resultType="com.example.backend.service.utils.CarTypeNum">
+        select a_car_type,count(*) as count from apply,reserve
+        where reserve.u_id = apply.u_id and DATE(sta_time) = CURDATE()
+        group by a_car_type;
+    </select>
+
+    <select id="getPreNum" resultType="com.example.backend.service.utils.HourNum">
+        SELECT
+            DATE(sta_time) AS time,
+            COUNT(*) AS count
+        FROM
+            reserve
+        WHERE
+            DATE(sta_time) BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 4 DAY)
+        GROUP BY
+            DATE(sta_time)
+        ORDER BY
+            DATE(sta_time)
+    </select>
 </mapper>

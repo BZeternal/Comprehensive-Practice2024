@@ -6,6 +6,9 @@ import com.example.backend.pojo.ExamBm;
 import com.example.backend.pojo.Reserve;
 import com.example.backend.service.ReserveService;
 import com.example.backend.mapper.ReserveMapper;
+import com.example.backend.service.utils.CarTypeNum;
+import com.example.backend.service.utils.HourNum;
+import com.example.backend.service.utils.SubNum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -115,6 +118,26 @@ public class ReserveServiceImpl extends ServiceImpl<ReserveMapper, Reserve>
             }
         }
         return null;
+    }
+
+    @Override
+    public List<HourNum> getEveryHourNum() {
+        return reserveMapper.getEveryHourNum();
+    }
+
+    @Override
+    public List<SubNum> getSubIdNum() {
+        return reserveMapper.getSubIdNum();
+    }
+
+    @Override
+    public List<CarTypeNum> getCarTypeNum() {
+        return reserveMapper.getCarTypeNum();
+    }
+
+    @Override
+    public List<HourNum> getPreNum() {
+        return reserveMapper.getPreNum();
     }
 }
 

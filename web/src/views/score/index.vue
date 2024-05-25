@@ -14,12 +14,13 @@
           placeholder="选择查询类型"
           style="width: 135px"
         >
-          <el-option label="学员账号" value="1" />
-          <el-option label="学习科目" value="2" />
+          <el-option label="学员" value="a_name" />
+          <el-option label="考试科目" value="sub_id" />
+          <el-option label="驾照类型" value="a_car_type" />
         </el-select>
       </template>
       <template #append>
-        <el-button :icon="Search" />
+        <el-button @click="findInfo" :icon="Search" />
       </template>
     </el-input>
   </div>
@@ -55,12 +56,41 @@
           link
           type="primary"
           size="large"
+          @click="
+            () => {
+              updateFlag = true;
+              Object.keys(exbm).forEach((i) => {
+                exbm[i] = scope.row[i];
+              });
+            }
+          "
         >
           填写成绩
         </el-button>
       </template>
     </el-table-column>
   </el-table>
+
+  <el-dialog v-model="updateFlag" title="输入成绩" width="500">
+    <el-form :model="exbm">
+      <el-form-item label="成绩">
+        <el-input-number
+          v-model="exbm.bmScore"
+          :min="0"
+          :max="100"
+          controls-position="right"
+          size="large"
+          style="width: 100%"
+        />
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <div class="dialog-footer">
+        <el-button @click="updateFlag = false">取消</el-button>
+        <el-button type="primary" @click="updateScore"> 确定 </el-button>
+      </div>
+    </template>
+  </el-dialog>
 </template>
 
 <script setup>
@@ -74,14 +104,53 @@ let search_data = reactive({
   keyword: "",
 });
 
+let updateFlag = ref(false);
+
+let exbm = reactive({
+  uId: "",
+  subId: "",
+  bmScore: 0,
+});
+
 let exbmList = ref([]);
 const refresh_exbm = () => {
   exbmApi.getInfo().then((resp) => {
     exbmList.value = resp;
-    console.log(exbmList.value);
   });
 };
 refresh_exbm();
+
+const updateScore = () => {
+  exbmApi.updateScore(exbm).then((resp) => {
+    ElMessage({
+      type: "success",
+      message: "成绩输入成功",
+    });
+    console.log(resp);
+    updateFlag.value = false;
+    refresh_exbm();
+  });
+};
+
+const findInfo = () => {
+  if (search_data.type == "") {
+    ElMessage({
+      type: "error",
+      message: "请先选择查询类型",
+    });
+    return;
+  }
+  if (
+    search_data.keyword == null ||
+    search_data.keyword == "" ||
+    search_data.keyword == undefined
+  ) {
+    search_data.type = "";
+  }
+  exbmApi.findInfo(search_data).then((resp) => {
+    exbmList.value = resp;
+  });
+};
 </script>
 
 <style scoped></style>

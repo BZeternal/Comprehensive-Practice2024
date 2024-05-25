@@ -30,3 +30,31 @@ export const getPro = () => {
         url:'/reserve/getPro',
     })
 }
+
+export const getEveryHourNum = () => {
+    return request({
+        method:'GET',
+        url:'/reserve/num/every',
+    })
+}
+
+export const getSubIdNum = () => {
+    return request({
+        method:'GET',
+        url:'/reserve/num/sub',
+    })
+}
+
+export const getCarTypeNum = () => {
+    return request({
+        method:'GET',
+        url:'/reserve/num/type',
+    })
+}
+
+export const getPreNum = () => {
+    return request({
+        method:'GET',
+        url:'/reserve/num/pre',
+    })
+}

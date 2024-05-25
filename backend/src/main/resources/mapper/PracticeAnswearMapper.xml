@@ -43,7 +43,7 @@
             pa.u_id,
             pa.pr_subject,
             COUNT(*) as count,
-            AVG(pa.pr_score) as avg_value,
+            ROUND(AVG(pa.pr_score),2) as avg_value,
             MAX(pa.pr_score) as max_value,
             SUM(CASE WHEN pa.pr_score > 90 THEN 1 ELSE 0 END) as qua_num,
             a.a_name
@@ -58,7 +58,7 @@
             pa.u_id,
             pa.pr_subject,
             COUNT(*) as count,
-            AVG(pa.pr_score) as avg_value,
+            ROUND(AVG(pa.pr_score),2) as avg_value,
             MAX(pa.pr_score) as max_value,
             SUM(CASE WHEN pa.pr_score > 90 THEN 1 ELSE 0 END) as qua_num,
             a.a_name
