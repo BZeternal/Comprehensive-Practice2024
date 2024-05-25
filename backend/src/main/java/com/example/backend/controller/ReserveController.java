@@ -3,6 +3,9 @@ package com.example.backend.controller;
 import com.example.backend.mapper.ReserveMapper;
 import com.example.backend.pojo.Reserve;
 import com.example.backend.service.ReserveService;
+import com.example.backend.service.utils.CarTypeNum;
+import com.example.backend.service.utils.HourNum;
+import com.example.backend.service.utils.SubNum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +38,26 @@ public class ReserveController {
     @GetMapping("/api/reserve/getPro")
     List<Reserve> getPro(){
         return reserveService.getPro();
+    }
+
+    @GetMapping("/api/reserve/num/every")
+    List<HourNum> getEveryHourNum(){
+        return reserveService.getEveryHourNum();
+    }
+
+    @GetMapping("/api/reserve/num/sub")
+    List<SubNum> getSubIdNum(){
+        return reserveService.getSubIdNum();
+    }
+
+    @GetMapping("/api/reserve/num/type")
+    List<CarTypeNum> getCarTypeNum(){
+        return reserveService.getCarTypeNum();
+    }
+
+    @GetMapping("/api/reserve/num/pre")
+    List<HourNum> getPreNum(){
+        return reserveService.getPreNum();
     }
 
 }

@@ -2,6 +2,9 @@ package com.example.backend.service;
 
 import com.example.backend.pojo.Reserve;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.backend.service.utils.CarTypeNum;
+import com.example.backend.service.utils.HourNum;
+import com.example.backend.service.utils.SubNum;
 
 import java.util.List;
 import java.util.Map;
@@ -18,4 +21,8 @@ public interface ReserveService extends IService<Reserve> {
     Map<String,String> deleteReserve(Map<String,String> data);
 
     List<Reserve> getPro();
+    List<HourNum> getEveryHourNum();
+    List<SubNum> getSubIdNum();
+    List<CarTypeNum> getCarTypeNum();
+    List<HourNum> getPreNum();
 }

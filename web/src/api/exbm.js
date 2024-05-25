@@ -14,3 +14,20 @@ export const getInfo = () => {
         url: '/eb/info/list',
     })
 }
+
+export const updateScore = (data) => {
+    return request({
+        method:"POST",
+        url:"/eb/update",
+        data:data
+    })
+}
+
+
+export const findInfo = (data) => {
+    return request({
+        method:"GET",
+        url:"/eb/find",
+        params:data
+    })
+}

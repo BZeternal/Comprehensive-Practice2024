@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
 * @author 86199
@@ -16,6 +17,8 @@ import java.util.List;
 public interface ExamBmMapper extends BaseMapper<ExamBm> {
     List<ExamBm> findPro();
     List<ExamBm> getInfo();
+    List<ExamBm> findInfo(Map<String,String> data);
+    void updateScore(Map<String,String> data);
 }
 
 

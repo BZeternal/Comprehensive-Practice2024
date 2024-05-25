@@ -35,4 +35,15 @@
     <select id="getInfo" resultType="com.example.backend.pojo.ExamBm">
         select * from exam_bm,apply where exam_bm.u_id = apply.u_id ORDER BY  bm_score IS NOT NULL, exam_bm.u_id;
     </select>
+
+    <select id="findInfo" resultType="com.example.backend.pojo.ExamBm">
+        select * from exam_bm,apply where exam_bm.u_id = apply.u_id and
+                                          ${type} like #{keyword} ORDER BY  bm_score IS NOT NULL, exam_bm.u_id;
+    </select>
+
+    <select id="updateScore" >
+        UPDATE exam_bm
+        SET bm_score = #{bmScore}
+        WHERE u_id = #{uId} and sub_id=#{subId};
+    </select>
 </mapper>
