@@ -19,4 +19,8 @@
         f_title,f_img,f_num,
         u_id
     </sql>
+
+    <select id="getForumHaveImg" resultType="com.example.backend.pojo.Forum">
+        select  * from user,forum where user.u_id = forum.u_id ORDER BY f_time DESC;
+    </select>
 </mapper>

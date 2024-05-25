@@ -30,6 +30,7 @@ public class ReserveServiceImpl extends ServiceImpl<ReserveMapper, Reserve>
     ExamBmMapper examBmMapper;
     @Override
     public List<Reserve> findReserveByUser(Map<String, String> data) {
+        reserveMapper.deleteOldReservations();
         return reserveMapper.findReserveByUser(data);
     }
 

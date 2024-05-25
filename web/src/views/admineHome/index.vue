@@ -6,11 +6,12 @@
       align-items: center;
       width: 100%;
       background-color: #2c3e50;
+      padding: 1rem 0;
     "
   >
     <div style="display: flex; width: 100%">
       <div style="flex: 1" ref="mCharts1" class="box"></div>
-      <div style="flex: 1" ref="mCharts" class="box"></div>
+      <div style="flex: 0.9" ref="mCharts" class="box"></div>
       <div style="flex: 1" ref="mCharts2" class="box"></div>
     </div>
     <div style="display: flex; width: 100%">

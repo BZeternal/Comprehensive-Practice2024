@@ -26,6 +26,8 @@ public interface ReserveMapper extends BaseMapper<Reserve> {
     List<CarTypeNum> getCarTypeNum();
     List<HourNum> getPreNum();
 
+    void  deleteOldReservations();
+
 }
 
 
