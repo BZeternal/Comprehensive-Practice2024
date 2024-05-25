@@ -4,6 +4,8 @@ import com.example.backend.pojo.Comment;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
 * @author 86199
 * @description 针对表【comment】的数据库操作Mapper
@@ -12,7 +14,7 @@ import org.apache.ibatis.annotations.Mapper;
 */
 @Mapper
 public interface CommentMapper extends BaseMapper<Comment> {
-
+    List<Comment> getCommentByfId(Integer fId);
 }
 
 

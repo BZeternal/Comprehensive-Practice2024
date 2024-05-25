@@ -5,12 +5,16 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -38,6 +42,8 @@ public class Forum implements Serializable {
      * 发表时间
      */
     @JsonProperty("fTime")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
     private Date fTime;
 
     /**
@@ -63,5 +69,11 @@ public class Forum implements Serializable {
      */
     @JsonProperty("uId")
     private Integer uId;
+
+    @TableField(exist = false)
+    List<Comment> comments;
+
+    @TableField(exist = false)
+    String image;
 
 }

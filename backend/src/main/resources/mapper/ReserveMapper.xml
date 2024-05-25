@@ -67,4 +67,11 @@
         ORDER BY
             DATE(sta_time)
     </select>
+
+    <delete id="deleteOldReservations">
+         <![CDATA[
+        DELETE FROM reserve
+        WHERE sta_time < CURDATE();
+        ]]>
+    </delete>
 </mapper>

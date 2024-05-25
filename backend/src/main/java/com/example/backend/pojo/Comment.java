@@ -7,10 +7,12 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -43,7 +45,8 @@ public class Comment implements Serializable {
     /**
      * 评论时间
      */
-    @JsonProperty("coTime")
+    @JsonProperty("coTime")    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
     private Date coTime;
 
     /**
@@ -51,5 +54,8 @@ public class Comment implements Serializable {
      */
     @JsonProperty("coContent")
     private String coContent;
+
+    @TableField(exist = false)
+    String image;
 
 }

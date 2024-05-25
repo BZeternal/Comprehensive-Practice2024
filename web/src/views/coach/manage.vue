@@ -4,7 +4,7 @@
   >
     <el-input
       v-model="search_data.keyword"
-      style="max-width: 600px"
+      style="max-width: 600px; height: 2rem"
       placeholder="输入关键词(搜索框为空默认查询所有信息)"
       class="input-with-select"
     >

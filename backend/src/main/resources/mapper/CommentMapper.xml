@@ -16,4 +16,8 @@
         co_id,u_id,f_id,
         co_time,co_content
     </sql>
+
+    <select id="getCommentByfId" resultType="com.example.backend.pojo.Comment">
+        select * from comment,user where user.u_id = comment.u_id and f_id = #{fId}
+    </select>
 </mapper>

@@ -12,7 +12,10 @@ export default defineConfig({
     proxy: {
       "/jztk": {
         target: "http://v.juhe.cn",
-        changeOrigin: true
+        changeOrigin: true,
+        pathRewrite:{
+          '^/jztk':''
+        }
       }
     }
   },
@@ -20,5 +23,8 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
+  build: {
+    chunkSizeWarningLimit: 1600,
+  },
 })

@@ -88,6 +88,14 @@ const allMenus = [
     url: '../views/score/index.vue',
     icon: 'tickets',
     auth: 1,
+  },
+  {
+    path:'/forum',
+    name: 'forum',
+    label: '论坛',
+    url: '../views/forum/index.vue',
+    icon: 'connection',
+    auth: 3,
   }
 
 ];
