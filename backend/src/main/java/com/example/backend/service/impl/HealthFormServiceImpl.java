@@ -29,7 +29,7 @@ public class HealthFormServiceImpl extends ServiceImpl<HealthFormMapper, HealthF
         Map<String,Object> map = new HashMap<>();
         map.put("u_id",healthForm.getUId());
         List<HealthForm> healthForms = healthFormMapper.selectByMap(map);
-        if (healthForms != null) {
+        if (healthForms.size() > 0) {
             healthForm.setHId(healthForms.get(0).getHId());
             healthFormMapper.updateById(healthForm);
         }else

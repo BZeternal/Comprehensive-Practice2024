@@ -155,12 +155,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         try {
             User user = userMapper.selectById(uId);
             user.setAuth(newAuth);
-            if (newAuth == 0)
-                user.setState("系统管理员");
-            else if (newAuth == 1)
-                user.setState("驾校管理员");
-            else
-                user.setState("学员");
             userMapper.updateById(user);
             return 1;
         }catch (Exception e){
@@ -174,6 +168,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         user.setState(str);
         userMapper.updateById(user);
     }
+
+
 }
 
 
