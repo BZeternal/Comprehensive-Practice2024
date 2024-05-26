@@ -60,10 +60,10 @@ const allMenus = [
   {
     path: '/admine/auth',
     name: 'auth',
-    label: '权限管理',
+    label: '用户管理',
     url: '../views/authManager/index.vue',
-    icon: 'lock',
-    auth: 1,
+    icon: 'user',
+    auth: 0,
   },
   {
     path: '/admine/coach',
@@ -74,7 +74,7 @@ const allMenus = [
     auth: 1,
   },
   {
-    path:'/admine/studyPro',
+    path: '/admine/studyPro',
     name: 'admine_studyPro',
     label: '学员学习进度',
     url: '../views/studyPro/index.vue',
@@ -82,7 +82,7 @@ const allMenus = [
     auth: 1,
   },
   {
-    path:'/admine/score',
+    path: '/admine/score',
     name: 'admine_score',
     label: '学员成绩',
     url: '../views/score/index.vue',
@@ -90,14 +90,21 @@ const allMenus = [
     auth: 1,
   },
   {
-    path:'/forum',
+    path: '/forum',
     name: 'forum',
     label: '论坛',
     url: '../views/forum/index.vue',
     icon: 'connection',
     auth: 3,
-  }
-
+  },
+  {
+    path: '/admine/audit',
+    name: 'audit',
+    label: '报名审核',
+    url: '../views/audit/index.vue',
+    icon: 'stamp',
+    auth: 1,
+  },
 ];
 
 const getMenus = auth => {

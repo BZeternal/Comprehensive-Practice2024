@@ -26,7 +26,7 @@ public class ApplyServiceImpl extends ServiceImpl<ApplyMapper, Apply>
         Map<String,Object> map = new HashMap<>();
         map.put("u_id", apply.getUId());
         List<Apply> applies = applyMapper.selectByMap(map);
-        if (applies != null){
+        if (applies.size() > 0){
             apply.setAId(applies.get(0).getAId());
             applyMapper.updateById(apply);
         }else

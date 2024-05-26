@@ -105,7 +105,10 @@
 import { ref } from 'vue';
 import { addUserInfo } from "@/api/user.js";
 import useUserStore from '@/stores/modules/user';
+import { ElMessage } from "element-plus";
+import { useRouter } from 'vue-router';
 
+let router = useRouter();
 const user = useUserStore();
 let userInfo = ref({
     uId: user.uId,
@@ -137,7 +140,8 @@ let applyInfo = ref({
 
 const submit = () => {
     addUserInfo(userInfo.value, applyInfo.value).then(res => {
-        console.log(res);
+        ElMessage.success("提交成功，请等待审核。");
+        router.push("/user/home");
     })
 }
 </script>

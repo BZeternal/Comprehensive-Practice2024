@@ -114,7 +114,7 @@ export const dynamicRouter = () => {
       component: modules[`${i.url}`],
     });
   });
-  if (auth == 2 && state == "非学员")
+  if (auth == 2 && (state == "非学员" || state == "被驳回"))
     tmp.children.push({
       path: '/user/apply',
       name: 'apply',
