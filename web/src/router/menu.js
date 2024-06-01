@@ -4,7 +4,7 @@ const allMenus = [
   {
     path: '/user/home', //路由
     name: 'home', //页面名字
-    label: '首页', //功能的名字，中文
+    label: '公告', //功能的名字，中文
     url: '../views/home/index.vue', //你vue文件的位置
     icon: 'house', //菜单左边的图标，element里面找，直接填名字，没想好直接复制这个
     auth: 2, //权限
@@ -104,6 +104,22 @@ const allMenus = [
     url: '../views/audit/index.vue',
     icon: 'stamp',
     auth: 1,
+  },
+  {
+    path: '/admine/annouance',
+    name: 'annouance',
+    label: '发布公告',
+    url: '../views/annouance/index.vue',
+    icon: 'editPen',
+    auth: 1,
+  },
+  {
+    path: '/user/exam',
+    name: 'exam',
+    label: '考试报名',
+    url: '../views/exam/index.vue',
+    icon: 'editPen',
+    auth: 2,
   },
 ];
 

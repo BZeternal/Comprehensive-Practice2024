@@ -33,5 +33,6 @@ public class SubType implements Serializable {
     @JsonProperty("subName")
     private String subName;
 
-
+    @JsonProperty("img")
+    private String img;
 }

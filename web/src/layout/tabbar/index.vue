@@ -3,10 +3,15 @@
         <div class="tabbar_left">
             <div v-if="st == '非学员'" @click="() => {
                 router.push({ name: 'apply' })
-            }">你还未报名，点此去报名</div>
+            }" style="color: rgb(215, 13, 13);">
+                你还未报名，
+                <span style="text-decoration: underline;cursor: pointer;">点此去报名</span>
+            </div>
             <div v-if="st == '被驳回'" @click="() => {
                 router.push({ name: 'apply' })
-            }">你的报名信息被驳回，请点此重填</div>
+            }" style="color: rgb(236, 219, 39);">你的报名信息被驳回，
+                <span style="text-decoration: underline;cursor: pointer;">点此重填</span>
+            </div>
         </div>
         <div class="tabbar_right">
             <!-- 头像 -->
