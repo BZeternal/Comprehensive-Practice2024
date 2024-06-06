@@ -39,7 +39,14 @@
                 </div>
                 <div class="row-right">
                     <div class="my-div"><span style="color: red;">*</span>机动车类型</div>
-                    <el-input v-model="userInfo.aCarType" style="width: 200px" placeholder="待填写" />
+                    <el-select v-model="userInfo.aCarType" placeholder="请选择" style="width: 200px">
+                        <el-option label="a1" value="a1" />
+                        <el-option label="a2" value="a2" />
+                        <el-option label="b1" value="b1" />
+                        <el-option label="b2" value="b2" />
+                        <el-option label="c1" value="c1" />
+                        <el-option label="c2" value="c2" />
+                    </el-select>
                 </div>
                 <div class="row">
                     <div class="my-div"><span style="color: red;">*</span>登记日期</div>
@@ -68,7 +75,10 @@
             </div>
             <div class="he-row">
                 <div class="my-div"><span style="color: red;">*</span>视力是否矫正</div>
-                <el-input v-model="applyInfo.hIsCorVision" placeholder="待填写" />
+                <el-select v-model="applyInfo.hIsCorVision" placeholder="请选择" style="width: 200px">
+                    <el-option label="是" value="是" />
+                    <el-option label="否" value="否" />
+                </el-select>
             </div>
             <div class="he-row">
                 <div class="my-div"><span style="color: red;">*</span>听力</div>
@@ -76,7 +86,10 @@
             </div>
             <div class="he-row">
                 <div class="my-div"><span style="color: red;">*</span>躯干是否有运动障碍</div>
-                <el-input v-model="applyInfo.hActionBar" placeholder="待填写" />
+                <el-select v-model="applyInfo.hActionBar" placeholder="请选择" style="width: 200px">
+                    <el-option label="是" value="是" />
+                    <el-option label="否" value="否" />
+                </el-select>
             </div>
             <div class="he-row">
                 <div class="my-div"><span style="color: red;">*</span>是否还有其他疾病</div>

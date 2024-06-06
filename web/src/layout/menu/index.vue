@@ -19,7 +19,7 @@ import getMenus from '../../router/menu.js'
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 
-let menus = getMenus(useUserStore().auth);
+let menus = getMenus(useUserStore().auth, sessionStorage.getItem("st"));
 //获取路由器对象
 let $router = useRouter();
 let activeIndex = ref($router.currentRoute.value.fullPath)

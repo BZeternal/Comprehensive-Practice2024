@@ -39,7 +39,7 @@ const allMenus = [
     label: '考题练习',
     url: '../views/practice/index.vue',
     icon: 'checked',
-    auth: 2,
+    auth: 4,
   },
   {
     path: '/admine/practice',
@@ -55,7 +55,7 @@ const allMenus = [
     label: '预约学车',
     url: '../views/reserve/index.vue',
     icon: 'calendar',
-    auth: 2,
+    auth: 4,
   },
   {
     path: '/admine/auth',
@@ -119,14 +119,16 @@ const allMenus = [
     label: '考试报名',
     url: '../views/exam/index.vue',
     icon: 'editPen',
-    auth: 2,
+    auth: 4,
   },
 ];
 
-const getMenus = auth => {
+
+const getMenus = (auth, st) => {
   const menus = [];
   allMenus.forEach(i => {
-    if (auth == i.auth || (i.auth == 3 && auth != 0) || (auth == 0 && i.auth == 1)) menus.push(i);
+    if (auth == i.auth || (i.auth == 3 && auth != 0) || (auth == 0 && i.auth == 1) ||
+      (i.auth == 4 && st == '学员')) menus.push(i);
   });
   return menus;
 };

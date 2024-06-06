@@ -1,6 +1,6 @@
 <template>
     <div style="width: 100%;display: flex; justify-content: space-between;">
-        <el-card style="width: 44%;">
+        <el-card style="width: 49%;">
             <div style="height: 50px;width: 100%;font-size: 25px;text-align: center;color: burlywood;">待审核人员</div>
             <el-table :data="userList" border style="width: 100%">
                 <el-table-column label="头像" width="105">
@@ -22,7 +22,7 @@
                 </el-table-column>
             </el-table>
         </el-card>
-        <el-card style="width: 54%;">
+        <el-card style="width: 49%;">
             <div style="height: 50px;width: 100%;font-size: 25px;text-align: center;color: green;">审核通过</div>
             <el-table :data="userList2" border style="width: 100%">
                 <el-table-column label="头像" width="105">
@@ -35,15 +35,15 @@
                         <span style="font-size: 20px;">{{ "#" + scope.row.uId }}</span>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作" width="260">
+                <el-table-column label="操作" width="149">
                     <template #default="scope">
                         <el-button type="primary" plain size="large" @click="showDialog(scope.row)">
                             查看相关信息
                         </el-button>
-                        <el-button type="warning" plain size="large" @click="() => {
+                        <!-- <el-button type="warning" plain size="large" @click="() => {
                             tmpInfo.user = scope.row;
                             checkInfo(1);
-                        }">驳回重填</el-button>
+                        }">驳回重填</el-button> -->
                     </template>
                 </el-table-column>
             </el-table>

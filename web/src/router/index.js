@@ -95,7 +95,7 @@ router.beforeEach((to, _from, next) => {
 export const dynamicRouter = () => {
   let auth = sessionStorage.getItem("auth");
   let state = sessionStorage.getItem("st");
-  const menus = getMenus(auth);
+  const menus = getMenus(auth, state);
   let tmp = {
     path: '/home',
     component: () => import('../layout/index.vue'),
