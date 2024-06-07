@@ -106,6 +106,7 @@ const refresh_all_coach = () => {
 const judgeUserType = () => {
   judgeType({ uId: userSore.uId }).then((resp) => {
     subId.value = resp.subId;
+    console.log(subId.value);
     if (resp.subId == null) {
       refresh_all_coach();
     } else {

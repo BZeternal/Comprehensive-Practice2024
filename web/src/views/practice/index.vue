@@ -194,7 +194,7 @@ const refresh_practice = () => {
       } else {
         ElMessage({
           type: "info",
-          message: "今日做题次数已达上限",
+          message: resp.data.reason,
         });
         loading.value = false;
       }

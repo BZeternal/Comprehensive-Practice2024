@@ -43,9 +43,10 @@
 
           <el-form-item label="分享照片"
             ><el-upload
-              action="#"
+              action="http://47.115.203.179:3000/api/forum/upload"
               list-type="picture-card"
-              :auto-upload="false"
+              :auto-upload="true"
+              :on-success="handle_success"
             >
               <el-icon><Plus /></el-icon>
             </el-upload>
@@ -133,7 +134,11 @@
               ><StarFilled /></el-icon
             >{{ forum.fNum }}
           </el-button>
-          <el-button style="flex: 1" link>
+          <el-button
+            @click="forum.coFlag = forum.coFlag == 0 ? 1 : 0"
+            style="flex: 1"
+            link
+          >
             <el-icon color="rgb(64,158,255)" size="1.4rem"><Comment /></el-icon
             >{{ forum.comments.length }}
           </el-button>
@@ -141,7 +146,8 @@
             <el-icon size="1.2rem"><Share /></el-icon>
           </el-button>
         </div>
-        <el-collapse>
+
+        <el-collapse v-if="forum.coFlag == 1">
           <el-collapse-item @click="comment.coContent = ''" name="1">
             <div
               style="display: flex; flex-direction: column; align-items: center"
@@ -251,6 +257,7 @@ const refresh_Info = () => {
     forums.value = resp;
     forums.value.forEach((i) => {
       i.flag = false;
+      i.coFlag = 0;
     });
   });
 };
@@ -323,6 +330,12 @@ const updateForum = (forum) => {
   forumApi.updateForum(forum).then((resp) => {
     // refresh_Info();
   });
+};
+
+const handle_success = (res) => {
+  if (res.error_info == "success") {
+    forum.fImg = res.path;
+  }
 };
 </script>
 

@@ -3,11 +3,12 @@ package com.example.backend.controller;
 import com.example.backend.pojo.Forum;
 import com.example.backend.service.ForumService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,5 +38,24 @@ public class ForumController {
     Map<String,String> updateForum(@RequestBody Forum forum)
     {
         return forumService.updateForum(forum);
+    }
+
+    @PostMapping("/api/forum/upload")
+    public Map<String,String> upload(@RequestParam(value = "file",required = false)MultipartFile file) throws IOException {
+        Map<String,String> map = new HashMap<>();
+        if(file.isEmpty())
+        {
+            map.put("error_info","error");
+            return map;
+        }
+
+        String name = file.getOriginalFilename();
+        name = System.currentTimeMillis() + "." + name.substring(name.lastIndexOf(".")+1);
+        String path = "/home/serve/backend/file/";
+        File dest = new File(path + name);
+        file.transferTo(dest);
+        map.put("error_info","success");
+        map.put("path",path+name);
+        return map;
     }
 }
