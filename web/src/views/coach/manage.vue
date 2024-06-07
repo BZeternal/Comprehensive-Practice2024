@@ -26,6 +26,7 @@
     <el-button
       @click="
         () => {
+          file_list.value = [];
           editFlag = true;
           clearCoach();
           opFlag = false;
@@ -126,6 +127,17 @@
       <el-form-item label="简介">
         <el-input v-model="coach.cText" type="textarea" />
       </el-form-item>
+      <el-form-item label="教练照片"
+        ><el-upload
+          action="http://47.115.203.179:3000/api/forum/upload"
+          list-type="picture-card"
+          :file-list="file_list"
+          :auto-upload="true"
+          :on-success="handle_success"
+        >
+          <el-icon><Plus /></el-icon>
+        </el-upload>
+      </el-form-item>
     </el-form>
     <template #footer>
       <div class="dialog-footer">
@@ -156,7 +168,7 @@ import * as coachApi from "../../api/coach";
 import useUserStore from "@/stores/modules/user.js";
 import { Search } from "@element-plus/icons-vue";
 const userSore = useUserStore();
-
+let file_list = ref([]);
 let search_data = reactive({
   type: "",
   keyword: "",
@@ -200,6 +212,7 @@ const clearCoach = () => {
 };
 
 const editCoach = (data) => {
+  file_list.value = [];
   opFlag.value = true;
   editFlag.value = true;
   Object.keys(coach).forEach((i) => {
@@ -257,6 +270,12 @@ const insertCoach = () => {
     refresh_coach();
     editFlag.value = false;
   });
+};
+
+const handle_success = (res) => {
+  if (res.error_info == "success") {
+    coach.cPic = res.path;
+  }
 };
 </script>
 

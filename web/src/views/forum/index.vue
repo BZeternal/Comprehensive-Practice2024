@@ -22,7 +22,12 @@
       <el-input
         style="width: 70%; margin-left: 2rem"
         placeholder="发表新鲜事"
-        @click="submitFlag = true"
+        @click="
+          () => {
+            submitFlag = true;
+            file_list = [];
+          }
+        "
       />
     </div>
 
@@ -45,6 +50,7 @@
             ><el-upload
               action="http://47.115.203.179:3000/api/forum/upload"
               list-type="picture-card"
+              :file-list="file_list"
               :auto-upload="true"
               :on-success="handle_success"
             >
@@ -231,7 +237,7 @@ import useUserStore from "@/stores/modules/user.js";
 import * as forumApi from "@/api/forum";
 import { ElMessage, ElMessageBox } from "element-plus";
 const userSore = useUserStore();
-
+let file_list = ref([]);
 let submitFlag = ref(false);
 let forum = reactive({
   uId: userSore.uId,

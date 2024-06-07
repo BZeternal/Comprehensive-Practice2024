@@ -47,11 +47,3 @@ export const deleteComment = (data) => {
     })
 }
 
-export const upload = (data) =>{
-    return request({
-        method:"POST",
-        url:"/api/forum/upload",
-        params:data
-    })
-}
-

@@ -55,7 +55,7 @@ public class ForumController {
         File dest = new File(path + name);
         file.transferTo(dest);
         map.put("error_info","success");
-        map.put("path",path+name);
+        map.put("path","http://47.115.203.179:8086/" + name);
         return map;
     }
 }
