@@ -37,7 +37,7 @@ const useUserStore = defineStore('user', {
           this.image = res.image;
           this.aName = res.aName;
           this.aCarType = res.aCarType;
-          this.ws = new WebSocket(`ws://localhost:3000/websocket/${res.uId}`);
+          this.ws = new WebSocket(`ws://47.115.203.179:3000/websocket/${res.uId}`);
           this.ws.onopen = () => { };
           success();
         }
