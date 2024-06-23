@@ -113,4 +113,11 @@ public class UserController {
         user.setState(state);
         userMapper.updateById(user);
     }
+
+    @GetMapping("/api/user/update_img")
+    void findUser(@RequestParam int uId,@RequestParam String url){
+        User user = userMapper.selectById(uId);
+        user.setImage(url);
+        userMapper.updateById(user);
+    }
 }

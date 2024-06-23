@@ -101,7 +101,6 @@ const login = () => {
                 sessionStorage.setItem("auth", resp.auth);
                 sessionStorage.setItem("st", resp.st);
                 dynamicRouter();
-                console.log(router.getRoutes());
                 setTimeout(() => {
                     if (resp.auth == 1 || resp.auth == 0) {
                         router.push({ name: "admineHome" })
