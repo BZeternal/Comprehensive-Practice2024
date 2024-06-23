@@ -102,3 +102,7 @@ export const check = (uId, state) => {
         },
     });
 }
+
+export const upImg = (uid, url) => {
+    return request.get("/user/update_img", { params: { url: url, uId: uid } });
+}

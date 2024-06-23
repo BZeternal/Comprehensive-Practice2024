@@ -127,6 +127,8 @@ const allMenus = [
 const getMenus = (auth, st) => {
   const menus = [];
   allMenus.forEach(i => {
+    if (i.label == '联系客服' && auth == 1)
+      i.label = '联系用户'
     if (auth == i.auth || (i.auth == 3 && auth != 0) || (auth == 0 && i.auth == 1) ||
       (i.auth == 4 && st == '学员')) menus.push(i);
   });
