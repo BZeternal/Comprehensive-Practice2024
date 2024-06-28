@@ -1,4 +1,18 @@
 <template>
+    <el-dialog v-model="img.flag" title="修改图片" width="500" style="margin-top: 30vh;" center>
+        <el-input v-model="img.url" style="width: 470px;" size="large" placeholder="输入图片地址" />
+        <template #footer>
+            <div class="dialog-footer">
+                <el-button @click="() => {
+                    img.url = ''
+                    img.flag = false
+                }">取消</el-button>
+                <el-button type="primary" @click="updateImg" plain>
+                    确认
+                </el-button>
+            </div>
+        </template>
+    </el-dialog>
     <div style="display: flex;flex-wrap: wrap;justify-content: center;">
         <el-card style="width: 60%;margin-bottom: 20px;">
             <div class="title">
@@ -10,13 +24,9 @@
                         <div class="left" style="line-height: 156px;">头像：</div>
                         <div style="height: 100%;">
                             <img :src="userStore.image"
-                                style="height: 155px;width: 155px;margin-right: 5px;border-radius: 2%;">
+                                style="height: 155px;width: 155px;margin-right: 5px;border-radius: 2%;cursor: pointer;"
+                                @click="img.flag = true">
                         </div>
-                        <el-upload class="avatar-uploader" action="#">
-                            <el-icon>
-                                <Plus class="avatar-uploader-icon" />
-                            </el-icon>
-                        </el-upload>
                     </div>
                 </div>
                 <div class="right-area">
@@ -291,6 +301,20 @@ const exportPDF = () => {
     });
 }
 
+let img = ref({
+    flag: false,
+    url: ''
+})
+const updateImg = () => {
+    if (img.value.url != '')
+        userApi.upImg(userStore.uId, img.value.url).then(res => {
+            location.reload();
+            ElMessage.success("修改成功！");
+            img.value.url = '';
+        })
+    else
+        ElMessage.warning("请输入要更改的图片地址！");
+}
 </script>
 
 <style scoped>
