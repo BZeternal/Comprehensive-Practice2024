@@ -38,8 +38,13 @@ public class ExamController {
             if (cj == null) return 1; //已报名考试
             else if ((subId == 1 || subId == 4) && cj >= 90 || (subId == 2 || subId == 3) && cj >= 80)
                 return 2; //考试已合格
-            else
+            else{
+                ExamBm examBm1 =  examBmList.get(0);
+                examBm1.setBmScore(null);
+                examBmMapper.updateById(examBm1);
                 return 0; //没报考，可以报考
+            }
+
         }
     }
 

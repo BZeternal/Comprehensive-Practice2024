@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const B_URL = 'http://47.115.203.179:3000/api';
+export const B_URL = 'http://localhost:3000/api';
 //创建axios实例
 let request = axios.create({
   baseURL: B_URL,
