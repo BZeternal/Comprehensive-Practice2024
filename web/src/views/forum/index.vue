@@ -120,7 +120,7 @@
         </h4>
         <div class="content">{{ forum.fContent }}</div>
         <img
-          v-if="forum.fImg != ''"
+          v-if="forum.fImg != '' && forum.fImg != null"
           :src="forum.fImg"
           style="height: 20rem; width: 50%; margin: 1rem 0.5rem"
         />
